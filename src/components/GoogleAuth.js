@@ -4,8 +4,8 @@ import { changeAuth } from '../actions';
 
 const GoogleAuth = () => {
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
-  const dispatch = useDispatch();
   const auth = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.gapi.load('client:auth2', () => {
@@ -16,10 +16,11 @@ const GoogleAuth = () => {
         })
         .then(() => {
           auth.current = window.gapi.auth2.getAuthInstance();
-          dispatch(
-            changeAuth(auth.current.isSignedIn.get()),
-            auth.current.currentUser.get().getId()
-          );
+
+          auth.current.isSignedIn.get()
+            ? dispatch(changeAuth(true, auth.current.currentUser.get().getId()))
+            : dispatch(changeAuth(false));
+
           auth.current.isSignedIn.listen((isSignedIn) =>
             dispatch(changeAuth(isSignedIn, auth.current.currentUser.get().getId()))
           );

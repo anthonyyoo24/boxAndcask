@@ -15,7 +15,6 @@ const Header = () => {
             <i className="search link icon"></i>
           </div>
         </div>
-        {/* <a className="ui item">Cart</a> */}
         <div className="ui item">
           <GoogleAuth />
         </div>

@@ -15,10 +15,10 @@ const App = () => {
           <Header />
           <Switch>
             <Route path="/" exact component={ProductList} />
-            <Route path="/product/new" exact component={ProductCreate} />
-            <Route path="/product/edit/:id" exact component={ProductEdit} />
-            <Route path="/product/delete/:id" exact component={ProductDelete} />
-            <Route path="/product/:id" exact component={ProductDetails} />
+            <Route path="/products/new" exact component={ProductCreate} />
+            <Route path="/products/edit/:id" exact component={ProductEdit} />
+            <Route path="/products/delete/:id" exact component={ProductDelete} />
+            <Route path="/products/:id" exact component={ProductDetails} />
           </Switch>
         </div>
       </HashRouter>
