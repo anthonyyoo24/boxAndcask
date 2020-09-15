@@ -29,10 +29,9 @@ const ProductForm = (props) => {
     <form onSubmit={props.handleSubmit(props.onSubmit)} className="ui form error">
       <Field name="name" component={renderInput} label="Name" />
       <Field name="category" component={renderInput} label="Category" />
-      <Field name="image" component={FileInput} label="Image" />
+      <Field name="image" component={FileInput} label="Image" type="file" />
       <Field name="price" component={renderInput} label="Price" type="number" />
       <Field name="stock" component={renderInput} label="Stock Count" type="number" />
-      <Field name="sku" component={renderInput} label="SKU Code" type="number" />
       <Field name="description" component={renderInput} label="Description" />
       <button className="ui button primary">Submit</button>
     </form>
@@ -44,9 +43,9 @@ const validate = (formValues) => {
 
   if (!formValues.name) errors.name = 'Please enter the name of the product.';
   if (!formValues.category) errors.category = 'Please enter the category of the product.';
+  if (!formValues.image) errors.image = 'Please upload an image of the product.';
   if (!formValues.price) errors.price = 'Please enter the price of the product.';
   if (!formValues.stock) errors.stock = 'Please enter the amount of stock of the product.';
-  if (!formValues.sku) errors.sku = 'Please enter the SKU code of the product.';
   if (!formValues.description) errors.description = 'Please enter a description for the product.';
 
   return errors;

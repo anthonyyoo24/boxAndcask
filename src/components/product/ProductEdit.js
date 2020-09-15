@@ -30,7 +30,6 @@ const ProductEdit = (props) => {
           'image',
           'price',
           'stock',
-          'sku',
           'description'
         )}
         onSubmit={onSubmit}
