@@ -25,7 +25,7 @@ const Header = () => {
       <Link to="/" className="active item">
         Box&Cask
       </Link>
-      {renderCreate()}
+
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
@@ -33,6 +33,7 @@ const Header = () => {
             <i className="search link icon"></i>
           </div>
         </div>
+        {renderCreate()}
         <Link to="/cart" className="ui item cart">
           <img src={cart} alt="shopping cart" />
           Cart

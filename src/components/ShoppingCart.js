@@ -45,7 +45,7 @@ const ShoppingCart = () => {
           <img className="cart__img" src={image} alt={product.name} />
           <div className="cart__content">
             <h3>{product.name}</h3>
-            <h4>{product.price}</h4>
+            <h4>${product.price}</h4>
             {renderQuantity(product.stock, product.orderQuantity, product)}
             <br />
             <button
