@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import PayPal from './PayPal';
 
-const OrderSummary = () => {
+const CartSummary = () => {
   const cart = useSelector((state) => Object.values(state.cart));
   const itemCount = cart.reduce((acc, cur) => {
     return acc + parseInt(cur.orderQuantity);
@@ -16,7 +17,7 @@ const OrderSummary = () => {
     <div className="ui card">
       <div className="content">
         <div className="header" style={{ textAlign: 'center' }}>
-          Order Summary
+          Cart Summary
         </div>
       </div>
       <div className="content">
@@ -26,10 +27,12 @@ const OrderSummary = () => {
         >{`Subtotal (${itemCount} items): $${subTotal}`}</h4>
       </div>
       <div className="extra content" style={{ textAlign: 'center' }}>
-        <button className="ui button primary">Proceed to Checkout</button>
+        {/* <button className="ui button primary">Proceed to Checkout</button> */}
+        <h4>Checkout Now</h4>
+        <PayPal total={subTotal} />
       </div>
     </div>
   );
 };
 
-export default OrderSummary;
+export default CartSummary;

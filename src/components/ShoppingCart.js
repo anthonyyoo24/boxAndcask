@@ -2,7 +2,7 @@ import './css/style.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantity, emptyCart, removeFromCart } from '../actions';
-import OrderSummary from './OrderSummary';
+import CartSummary from './CartSummary';
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => Object.values(state.cart));
@@ -78,7 +78,7 @@ const ShoppingCart = () => {
         {renderList()}
         {renderEmptyCart()}
       </div>
-      <OrderSummary />
+      <CartSummary />
     </div>
   );
 };
