@@ -1,11 +1,13 @@
 import './css/style.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeQuantity, emptyCart, removeFromCart } from '../actions';
+import { changeQuantity, emptyCart, paymentFail, removeFromCart } from '../actions';
 import CartSummary from './CartSummary';
+import history from '../history';
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => Object.values(state.cart));
+  const paymentSuccess = useSelector((state) => state.payment);
   const dispatch = useDispatch();
 
   const renderQuantity = (stock, initialValue, product) => {
@@ -70,17 +72,55 @@ const ShoppingCart = () => {
     }
   };
 
-  if (cart.length === 0) return <h2>Your shopping cart is empty</h2>;
+  // return (
+  //   <div className="ui segment" style={{maxWidth: '50vw', margin: 'auto'}}>
+  //     <div className="ui success message success-div">
+  //       <i class="check circle icon" style={{fontSize: '40px', paddingTop: '8px'}}></i>
+  //       <div>
+  //         <div className="header">Thank you for your order!</div>
+  //         <p>Your payment has been accepted</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
-  return (
-    <div className="cart-page">
-      <div className="cart">
-        {renderList()}
-        {renderEmptyCart()}
+  if (!paymentSuccess && cart.length > 0) {
+    return (
+      <div className="cart-page">
+        <div className="cart">
+          {renderList()}
+          {renderEmptyCart()}
+        </div>
+        <CartSummary />
       </div>
-      <CartSummary />
-    </div>
-  );
+    );
+  } else if (paymentSuccess && cart.length > 0) {
+    setTimeout(() => {
+      dispatch(emptyCart());
+    }, 4000);
+
+    return (
+      <div className="ui segment" style={{ maxWidth: '50vw', margin: 'auto' }}>
+        <div className="ui success message success-div">
+          <i className="check circle icon" style={{ fontSize: '40px', paddingTop: '8px' }}></i>
+          <div>
+            <div className="header">Thank you for your order!</div>
+            <p>Your payment has been accepted</p>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (cart.length === 0 && !paymentSuccess) {
+    return <h2>Your shopping cart is empty</h2>;
+  } else if (cart.length === 0 && paymentSuccess) {
+    dispatch(paymentFail());
+
+    setTimeout(() => {
+      history.push('/');
+    }, 1000);
+  }
+
+  // ]V#Hd8?_
 };
 
 export default ShoppingCart;

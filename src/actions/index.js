@@ -10,9 +10,19 @@ import {
   REMOVE_FROM_CART,
   EMPTY_CART,
   CHANGE_QUANTITY,
+  PAYMENT_SUCCESS,
+  PAYMENT_FAIL,
 } from './types';
 import products from '../apis/products';
 import history from '../history';
+
+export const paymentSuccess = () => {
+  return { type: PAYMENT_SUCCESS };
+};
+
+export const paymentFail = () => {
+  return { type: PAYMENT_FAIL };
+};
 
 export const addToCart = (product, orderQuantity) => {
   return {

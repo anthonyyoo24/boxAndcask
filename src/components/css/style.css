@@ -32,3 +32,10 @@
 .cart__content {
   padding: 20px;
 }
+
+.success-div {
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: start;
+  grid-template-columns: 1fr 9fr;
+}
