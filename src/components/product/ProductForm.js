@@ -44,6 +44,8 @@ const validate = (formValues) => {
   if (!formValues.name) errors.name = 'Please enter the name of the product.';
   if (!formValues.category) errors.category = 'Please enter the category of the product.';
   if (!formValues.price) errors.price = 'Please enter the price of the product.';
+  if (parseFloat(formValues.price) < 0.01 && formValues.price)
+    errors.price = 'Please enter a price greater than 1 cent.';
   if (!formValues.stock) errors.stock = 'Please enter the amount of stock of the product.';
   if (!formValues.description) errors.description = 'Please enter a description for the product.';
 

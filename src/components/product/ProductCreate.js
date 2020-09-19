@@ -8,7 +8,14 @@ const ProductCreate = () => {
 
   const onSubmit = (formValues) => {
     console.log(formValues);
-    dispatch(createProduct(formValues));
+
+    // So that when a price below 1 is entered without the '0' before the decimal (ie. '.01' rather than '0.01'),
+    // the '0' is automatically included
+    const formattedPrice = parseFloat(formValues.price).toFixed(2);
+
+    const newFormValues = { ...formValues, price: formattedPrice };
+
+    dispatch(createProduct(newFormValues));
   };
 
   return (

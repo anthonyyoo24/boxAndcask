@@ -51,6 +51,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, [action.payload.id]: action.payload };
     }
     case EDIT_PRODUCT: {
+      if (!state[action.payload.id]) return state;
+
       const orderQuantity = state[action.payload.id].orderQuantity;
 
       localStorage.setItem(
