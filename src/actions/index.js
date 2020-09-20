@@ -12,9 +12,21 @@ import {
   CHANGE_QUANTITY,
   PAYMENT_SUCCESS,
   PAYMENT_FAIL,
+  SEARCH_PRODUCTS,
 } from './types';
 import products from '../apis/products';
 import history from '../history';
+
+export const searchProducts = (term) => (dispatch, getState) => {
+  const products = getState().products;
+  const searchedProducts = Object.values(products).filter((product) =>
+    product.name.toLowerCase().includes(term.toLowerCase())
+  );
+
+  dispatch({ type: SEARCH_PRODUCTS, payload: searchedProducts });
+
+  history.push('/');
+};
 
 export const paymentSuccess = () => {
   return { type: PAYMENT_SUCCESS };

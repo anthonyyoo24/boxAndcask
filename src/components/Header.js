@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
@@ -27,12 +28,7 @@ const Header = () => {
       </Link>
 
       <div className="right menu">
-        <div className="item">
-          <div className="ui icon input">
-            <input type="text" placeholder="Search..." />
-            <i className="search link icon"></i>
-          </div>
-        </div>
+        <SearchBar />
         {renderCreate()}
         <Link to="/cart" className="ui item cart">
           <img src={cart} alt="shopping cart" />
