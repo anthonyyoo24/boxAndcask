@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchProducts, searchProducts } from '../../actions';
 
 const ProductList = () => {
   const products = useSelector((state) => Object.values(state.products));
   const searchedProducts = useSelector((state) => Object.values(state.searchedProducts));
   const currentUserId = useSelector((state) => state.auth.userId);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (!searchedProducts) dispatch(fetchProducts());
-  // }, [dispatch, searchedProducts]);
 
   const renderAdmin = (product) => {
     if (product.userId === currentUserId) {

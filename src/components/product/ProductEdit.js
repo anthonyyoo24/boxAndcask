@@ -12,7 +12,7 @@ const ProductEdit = (props) => {
     console.log(formValues);
 
     // So that when a price below 1 is entered without the '0' before the decimal (ie. '.01' rather than '0.01'),
-    // the '0' is automatically included
+    // the '0' is automatically included. Also, we make sure that there are always two decimal places.
     const formattedPrice = parseFloat(formValues.price).toFixed(2);
 
     const newFormValues = { ...formValues, price: formattedPrice };
@@ -30,15 +30,7 @@ const ProductEdit = (props) => {
     <div>
       <h3>Edit Product</h3>
       <ProductForm
-        initialValues={_.pick(
-          product,
-          'name',
-          'category',
-          'image',
-          'price',
-          'stock',
-          'description'
-        )}
+        initialValues={_.pick(product, 'name', 'image', 'price', 'stock', 'description')}
         onSubmit={onSubmit}
       />
     </div>

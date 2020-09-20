@@ -28,7 +28,6 @@ const ProductForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit(props.onSubmit)} className="ui form error">
       <Field name="name" component={renderInput} label="Name" />
-      <Field name="category" component={renderInput} label="Category" />
       <Field name="image" component={FileInput} label="Image" />
       <Field name="price" component={renderInput} label="Price" type="number" />
       <Field name="stock" component={renderInput} label="Stock Count" type="number" />
@@ -42,7 +41,6 @@ const validate = (formValues) => {
   const errors = {};
 
   if (!formValues.name) errors.name = 'Please enter the name of the product.';
-  if (!formValues.category) errors.category = 'Please enter the category of the product.';
   if (!formValues.price) errors.price = 'Please enter the price of the product.';
   if (parseFloat(formValues.price) < 0.01 && formValues.price)
     errors.price = 'Please enter a price greater than 1 cent.';
