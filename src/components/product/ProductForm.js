@@ -16,7 +16,7 @@ const renderInput = ({ input, label, meta, type }) => {
   const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
   const fieldInput =
     type === 'textarea' ? (
-      <textarea {...input} />
+      <textarea {...input} rows="7" />
     ) : (
       <input {...input} autoComplete="off" type={type} />
     );

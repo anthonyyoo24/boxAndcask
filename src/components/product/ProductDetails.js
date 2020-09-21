@@ -7,6 +7,7 @@ import { addToCart, fetchProduct } from '../../actions';
 const ProductDetails = (props) => {
   const [orderQuantity, setOrderQuantity] = useState(1);
   const product = useSelector((state) => state.products[props.match.params.id]);
+  const currentUserId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,6 +15,21 @@ const ProductDetails = (props) => {
   }, [dispatch, props.match.params.id]);
 
   if (!product) return <div>Loading...</div>;
+
+  const renderAdmin = (product) => {
+    if (product.userId === currentUserId) {
+      return (
+        <div className="right floated content">
+          <Link to={`/products/edit/${product.id}`} className="ui button primary">
+            Edit
+          </Link>
+          <Link to={`/products/delete/${product.id}`} className="ui button negative">
+            Delete
+          </Link>
+        </div>
+      );
+    }
+  };
 
   const renderStockStatus = () => {
     if (product.stock > 0) {
@@ -28,7 +44,11 @@ const ProductDetails = (props) => {
       const options = [];
 
       for (let i = 1; i <= stock; i++) {
-        options.push(<option key={i} value={i}>{i}</option>);
+        options.push(
+          <option key={i} value={i}>
+            {i}
+          </option>
+        );
       }
 
       return (
@@ -71,6 +91,7 @@ const ProductDetails = (props) => {
           <h4>Product Description</h4>
           {product.description}
         </div>
+        {renderAdmin(product)}
       </div>
     </div>
   );

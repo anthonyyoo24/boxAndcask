@@ -27,7 +27,6 @@ const CartSummary = () => {
         >{`Subtotal (${itemCount} items): $${subTotal}`}</h4>
       </div>
       <div className="extra content" style={{ textAlign: 'center' }}>
-        {/* <button className="ui button primary">Proceed to Checkout</button> */}
         <h4>Checkout Now</h4>
         <PayPal total={subTotal} />
       </div>
