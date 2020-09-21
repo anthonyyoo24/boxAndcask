@@ -14,11 +14,17 @@ const renderError = ({ error, touched }) => {
 
 const renderInput = ({ input, label, meta, type }) => {
   const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+  const fieldInput =
+    type === 'textarea' ? (
+      <textarea {...input} />
+    ) : (
+      <input {...input} autoComplete="off" type={type} />
+    );
 
   return (
     <div className={className}>
       <label>{label}</label>
-      <input {...input} autoComplete="off" type={type} />
+      {fieldInput}
       {renderError(meta)}
     </div>
   );
@@ -31,7 +37,7 @@ const ProductForm = (props) => {
       <Field name="image" component={FileInput} label="Image" />
       <Field name="price" component={renderInput} label="Price" type="number" />
       <Field name="stock" component={renderInput} label="Stock Count" type="number" />
-      <Field name="description" component={renderInput} label="Description" />
+      <Field name="description" component={renderInput} label="Description" type="textarea" />
       <button className="ui button primary">Submit</button>
     </form>
   );

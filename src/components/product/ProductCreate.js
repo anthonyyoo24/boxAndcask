@@ -19,8 +19,8 @@ const ProductCreate = () => {
   };
 
   return (
-    <div>
-      <h3>Create a Product</h3>
+    <div className="ui segment" style={{ maxWidth: '40vw', margin: 'auto' }}>
+      <h3 className="ui dividing header">Create a Product</h3>
       <ProductForm onSubmit={onSubmit} />
     </div>
   );
