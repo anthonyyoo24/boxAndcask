@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
 import { fetchProduct } from '../actions';
 
-const Unauthorized = () => {
+const Unauthorized = ({ location, history }) => {
   const currentUserId = useSelector((state) => state.auth.userId);
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const history = useHistory();
   const { from } = location.state || { from: { pathname: '/' } };
 
   const urlSplitArray = from.pathname.split('/');
   const productId = urlSplitArray[urlSplitArray.length - 1];
 
   const product = useSelector((state) => state.products[productId]);
-  
+
   useEffect(() => {
     if (isSignedIn && (from.pathname.includes('edit') || from.pathname.includes('delete'))) {
       dispatch(fetchProduct(productId));

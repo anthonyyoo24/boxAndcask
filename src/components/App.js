@@ -24,9 +24,7 @@ const App = () => {
             <ProtectedRoute path="/products/delete/:id" exact component={ProductDelete} />
             <Route path="/products/:id" exact component={ProductDetails} />
             <Route path="/cart" exact component={ShoppingCart} />
-            <Route path="/unauthorized" exact>
-              <Unauthorized />
-            </Route>
+            <Route path="/unauthorized" exact component={Unauthorized} />
           </Switch>
         </div>
       </Router>

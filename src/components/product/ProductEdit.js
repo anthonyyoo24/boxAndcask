@@ -1,13 +1,11 @@
 import _ from 'lodash';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import ProductForm from './ProductForm';
 import { editProduct, fetchProduct } from '../../actions';
 
 const ProductEdit = (props) => {
   const product = useSelector((state) => state.products[props.match.params.id]);
-  const currentUserId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
 
   const onSubmit = (formValues) => {
