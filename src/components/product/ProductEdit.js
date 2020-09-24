@@ -28,16 +28,6 @@ const ProductEdit = (props) => {
 
   if (!product) return <div>Loading...</div>;
 
-  if (product.userId !== currentUserId)
-    return (
-      <Redirect
-        to={{
-          pathname: '/unauthorized',
-          state: { from: props.location },
-        }}
-      />
-    );
-
   return (
     <div className="ui segment" style={{ maxWidth: '40vw', margin: 'auto' }}>
       <h3 className="ui dividing header">Edit Product</h3>

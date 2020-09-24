@@ -5,6 +5,9 @@ import { Route, Redirect } from 'react-router-dom';
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
 
+  // when our app first boots up we are not signed in so we are immediately redirected to the unauthorized
+  // component.
+
   return (
     <Route
       {...rest}

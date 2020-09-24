@@ -1,42 +1,48 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import { fetchProduct } from '../actions';
 
-const Unauthorized = ({ history, location }) => {
+const Unauthorized = () => {
   const currentUserId = useSelector((state) => state.auth.userId);
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
   const { from } = location.state || { from: { pathname: '/' } };
 
-  const urlSplitArray = location.state.from.pathname.split('/');
+  const urlSplitArray = from.pathname.split('/');
   const productId = urlSplitArray[urlSplitArray.length - 1];
-  const product = useSelector((state) => state.products[productId]);
 
+  const product = useSelector((state) => state.products[productId]);
+  
   useEffect(() => {
     if (isSignedIn && (from.pathname.includes('edit') || from.pathname.includes('delete'))) {
       dispatch(fetchProduct(productId));
     }
   }, [dispatch, from.pathname, productId, isSignedIn]);
 
-  if (isSignedIn && from.pathname.includes('edit') && product.userId !== currentUserId) {
-    return <div>Only the user who created this product may edit it.</div>;
-  } else if (isSignedIn && from.pathname.includes('delete') && product.userId !== currentUserId) {
-    return <div>Only the user who created this product may delete it.</div>;
-  } else if (isSignedIn) {
-    history.replace(from);
-  } else {
-    return <div>You must first log in to access this page.</div>;
-  }
+  if (
+    isSignedIn &&
+    (from.pathname.includes('edit') || from.pathname.includes('delete')) &&
+    product.userId === currentUserId
+  ) {
+    setTimeout(() => {
+      history.replace(from);
+    }, 100);
 
-  // else if (
-  //   isSignedIn &&
-  //   (from.pathname.includes('edit') || from.pathname.includes('delete')) &&
-  //   product.userId === currentUserId
-  // ) {
-  //   history.replace(from);
-  // } else if (isSignedIn && from.pathname.includes('new')) {
-  //   history.replace(from);
-  // }
+    return null;
+  } else if (isSignedIn && from.pathname.includes('new')) {
+    setTimeout(() => {
+      history.replace(from);
+    }, 100);
+
+    return null;
+  } else if (!isSignedIn) {
+    return <div>You must first log in to access this page.</div>;
+  } else {
+    return <div>Only the user who posted this product can access this page.</div>;
+  }
 };
 
 export default Unauthorized;
