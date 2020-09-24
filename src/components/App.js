@@ -8,6 +8,8 @@ import ProductDelete from './product/ProductDelete';
 import ShoppingCart from './ShoppingCart';
 import Header from './Header';
 import history from '../history';
+import ProtectedRoute from './ProtectedRoute';
+import Unauthorized from './Unauthorized';
 
 const App = () => {
   return (
@@ -17,11 +19,12 @@ const App = () => {
           <Header />
           <Switch>
             <Route path="/" exact component={ProductList} />
-            <Route path="/products/new" exact component={ProductCreate} />
-            <Route path="/products/edit/:id" exact component={ProductEdit} />
-            <Route path="/products/delete/:id" exact component={ProductDelete} />
+            <ProtectedRoute path="/products/new" exact component={ProductCreate} />
+            <ProtectedRoute path="/products/edit/:id" exact component={ProductEdit} />
+            <ProtectedRoute path="/products/delete/:id" exact component={ProductDelete} />
             <Route path="/products/:id" exact component={ProductDetails} />
             <Route path="/cart" exact component={ShoppingCart} />
+            <Route path="/unauthorized" exact component={Unauthorized} />
           </Switch>
         </div>
       </Router>

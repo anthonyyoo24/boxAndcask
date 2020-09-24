@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import ProductForm from './ProductForm';
 import { editProduct, fetchProduct } from '../../actions';
 
 const ProductEdit = (props) => {
   const product = useSelector((state) => state.products[props.match.params.id]);
+  const currentUserId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
 
   const onSubmit = (formValues) => {
@@ -26,8 +28,18 @@ const ProductEdit = (props) => {
 
   if (!product) return <div>Loading...</div>;
 
+  if (product.userId !== currentUserId)
+    return (
+      <Redirect
+        to={{
+          pathname: '/unauthorized',
+          state: { from: props.location },
+        }}
+      />
+    );
+
   return (
-    <div className="ui segment" style={{maxWidth: '40vw', margin: 'auto'}}>
+    <div className="ui segment" style={{ maxWidth: '40vw', margin: 'auto' }}>
       <h3 className="ui dividing header">Edit Product</h3>
       <ProductForm
         initialValues={_.pick(product, 'name', 'image', 'price', 'stock', 'description')}
