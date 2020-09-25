@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 
 const Header = () => {
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
+  const cart = useSelector((state) => Object.values(state.cart));
 
   const renderCreate = () => {
     if (isSignedIn) {
@@ -19,7 +20,7 @@ const Header = () => {
     }
   };
 
-  const cart = require(`../img/svg/icon-shopping-cart.svg`);
+  const cartIcon = require(`../img/svg/icon-shopping-cart.svg`);
 
   return (
     <div className="ui secondary  menu">
@@ -31,8 +32,8 @@ const Header = () => {
         <SearchBar />
         {renderCreate()}
         <Link to="/cart" className="ui item cart">
-          <img src={cart} alt="shopping cart" />
-          Cart
+          <img src={cartIcon} alt="shopping cart" />
+          {cart.length}
         </Link>
         <div className="ui item">
           <GoogleAuth />
