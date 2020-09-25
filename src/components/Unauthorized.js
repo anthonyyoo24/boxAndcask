@@ -8,8 +8,8 @@ const Unauthorized = ({ location, history }) => {
   const dispatch = useDispatch();
   const { from } = location.state || { from: { pathname: '/' } };
 
-  const urlSplitArray = from.pathname.split('/');
-  const productId = urlSplitArray[urlSplitArray.length - 1];
+  const previousUrlSplitArray = from.pathname.split('/');
+  const productId = previousUrlSplitArray[previousUrlSplitArray.length - 1];
 
   const product = useSelector((state) => state.products[productId]);
 
