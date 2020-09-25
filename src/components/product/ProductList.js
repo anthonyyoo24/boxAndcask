@@ -43,7 +43,7 @@ const ProductList = () => {
     }
 
     return paginatedList.map((product) => {
-      const image = require(`../img/${product.image}`);
+      const image = require(`../../img/${product.image}`);
 
       return (
         <div key={product.id} className="ui card">

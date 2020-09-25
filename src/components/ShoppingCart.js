@@ -40,7 +40,7 @@ const ShoppingCart = () => {
 
   const renderList = () => {
     return cart.map((product) => {
-      const image = require(`./img/${product.image}`);
+      const image = require(`../img/${product.image}`);
 
       return (
         <div key={product.id} className="ui vertical segment cart__item">

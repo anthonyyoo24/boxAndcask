@@ -19,7 +19,7 @@ const Header = () => {
     }
   };
 
-  const cart = require(`./img/svg/icon-shopping-cart.svg`);
+  const cart = require(`../img/svg/icon-shopping-cart.svg`);
 
   return (
     <div className="ui secondary  menu">

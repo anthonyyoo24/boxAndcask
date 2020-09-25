@@ -67,7 +67,7 @@ const ProductDetails = (props) => {
     }
   };
 
-  const image = require(`../img/${product.image}`);
+  const image = require(`../../img/${product.image}`);
 
   return (
     <div className="details">
