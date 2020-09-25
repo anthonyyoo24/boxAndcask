@@ -1,4 +1,4 @@
-import './css/style.css';
+import '../css/style.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantity, emptyCart, paymentFail, removeFromCart } from '../actions';
