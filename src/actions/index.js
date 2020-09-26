@@ -17,6 +17,28 @@ import {
 import products from '../apis/products';
 import history from '../history';
 
+// send an array of products
+// dispatch FETCH_PRODUCTS?
+// export const shipOutStock = () => (dispatch, getState) => {
+//   const cart = getState().cart;
+//   const products = getState().products;
+
+//   const updatedProducts = Object.values(products).map((product) => {
+//     if (cart[product.id]) {
+//       const leftOverStock = product.stock - cart[product.id].orderQuantity;
+
+//       console.log(leftOverStock);
+//       product.stock = leftOverStock;
+//     }
+
+//     return product;
+//   });
+
+//   console.log(updatedProducts);
+
+//   dispatch({ type: SHIP_STOCK, payload: updatedProducts });
+// };
+
 export const searchProducts = (term) => (dispatch, getState) => {
   const products = getState().products;
   const searchedProducts = Object.values(products).filter((product) =>
@@ -28,8 +50,37 @@ export const searchProducts = (term) => (dispatch, getState) => {
   history.push('/');
 };
 
-export const paymentSuccess = () => {
-  return { type: PAYMENT_SUCCESS };
+// export const updateStock = () => async (dispatch, getState) => {
+//   const cart = getState().cart;
+//   const products = getState().products;
+
+//   Object.values(products).forEach(async (product) => {
+//     if (cart[product.id]) {
+//       const leftOverStock = product.stock - cart[product.id].orderQuantity;
+
+//       product.stock = leftOverStock;
+
+//       const response = await products.put(`/products/${product.id}`, product);
+//       // const response = await products.patch(`/products/${id}`, formValues);
+//     }
+//   });
+// };
+
+export const paymentSuccess = () => (dispatch, getState) => {
+  const cart = getState().cart;
+  const productList = getState().products;
+
+  Object.values(productList).forEach(async (product) => {
+    if (cart[product.id]) {
+      const leftOverStock = product.stock - cart[product.id].orderQuantity;
+
+      const response = await products.patch(`/products/${product.id}`, { stock: leftOverStock });
+
+      dispatch({ type: EDIT_PRODUCT, payload: response.data });
+    }
+  });
+
+  dispatch({ type: PAYMENT_SUCCESS });
 };
 
 export const paymentFail = () => {
@@ -93,6 +144,8 @@ export const fetchProduct = (id) => async (dispatch) => {
 
 export const fetchProducts = () => async (dispatch) => {
   const response = await products.get('/products');
+
+  console.log(response.data);
 
   dispatch({ type: FETCH_PRODUCTS, payload: response.data });
 };
