@@ -17,28 +17,6 @@ import {
 import products from '../apis/products';
 import history from '../history';
 
-// send an array of products
-// dispatch FETCH_PRODUCTS?
-// export const shipOutStock = () => (dispatch, getState) => {
-//   const cart = getState().cart;
-//   const products = getState().products;
-
-//   const updatedProducts = Object.values(products).map((product) => {
-//     if (cart[product.id]) {
-//       const leftOverStock = product.stock - cart[product.id].orderQuantity;
-
-//       console.log(leftOverStock);
-//       product.stock = leftOverStock;
-//     }
-
-//     return product;
-//   });
-
-//   console.log(updatedProducts);
-
-//   dispatch({ type: SHIP_STOCK, payload: updatedProducts });
-// };
-
 export const searchProducts = (term) => (dispatch, getState) => {
   const products = getState().products;
   const searchedProducts = Object.values(products).filter((product) =>
@@ -49,22 +27,6 @@ export const searchProducts = (term) => (dispatch, getState) => {
 
   history.push('/');
 };
-
-// export const updateStock = () => async (dispatch, getState) => {
-//   const cart = getState().cart;
-//   const products = getState().products;
-
-//   Object.values(products).forEach(async (product) => {
-//     if (cart[product.id]) {
-//       const leftOverStock = product.stock - cart[product.id].orderQuantity;
-
-//       product.stock = leftOverStock;
-
-//       const response = await products.put(`/products/${product.id}`, product);
-//       // const response = await products.patch(`/products/${id}`, formValues);
-//     }
-//   });
-// };
 
 export const paymentSuccess = () => (dispatch, getState) => {
   const cart = getState().cart;

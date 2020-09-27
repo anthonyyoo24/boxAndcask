@@ -52,7 +52,7 @@ const ProductDetails = (props) => {
       }
 
       return (
-        <React.Fragment>
+        <div>
           Quantity:&nbsp;
           <select
             onChange={(e) => {
@@ -62,7 +62,7 @@ const ProductDetails = (props) => {
           >
             {options}
           </select>
-        </React.Fragment>
+        </div>
       );
     }
   };

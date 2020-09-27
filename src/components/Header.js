@@ -8,6 +8,10 @@ const Header = () => {
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
   const cart = useSelector((state) => Object.values(state.cart));
 
+  const cartQuantity = cart.reduce((acc, product) => {
+    return acc + parseInt(product.orderQuantity);
+  }, 0);
+
   const renderCreate = () => {
     if (isSignedIn) {
       return (
@@ -33,7 +37,7 @@ const Header = () => {
         {renderCreate()}
         <Link to="/cart" className="ui item cart">
           <img src={cartIcon} alt="shopping cart" />
-          {cart.length}
+          {cartQuantity}
         </Link>
         <div className="ui item">
           <GoogleAuth />

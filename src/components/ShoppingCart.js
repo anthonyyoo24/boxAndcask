@@ -1,5 +1,5 @@
 import '../css/style.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantity, emptyCart, paymentFail, removeFromCart } from '../actions';
 import CartSummary from './CartSummary';
@@ -23,7 +23,7 @@ const ShoppingCart = () => {
       }
 
       return (
-        <React.Fragment>
+        <div>
           Quantity:&nbsp;
           <select
             onChange={(e) => {
@@ -33,7 +33,7 @@ const ShoppingCart = () => {
           >
             {options}
           </select>
-        </React.Fragment>
+        </div>
       );
     }
   };
@@ -72,6 +72,13 @@ const ShoppingCart = () => {
     }
   };
 
+  useEffect(() => {
+    if (paymentSuccess && cart.length === 0) {
+      dispatch(paymentFail());
+      history.push('/');
+    }
+  }, [cart.length, paymentSuccess, dispatch]);
+
   if (!paymentSuccess && cart.length > 0) {
     return (
       <div className="cart-page">
@@ -98,14 +105,10 @@ const ShoppingCart = () => {
         </div>
       </div>
     );
-  } else if (cart.length === 0 && !paymentSuccess) {
+  } else if (!paymentSuccess && cart.length === 0) {
     return <h2>Your shopping cart is empty</h2>;
-  } else if (cart.length === 0 && paymentSuccess) {
-    dispatch(paymentFail());
-
-    setTimeout(() => {
-      history.push('/');
-    }, 1000);
+  } else if (paymentSuccess && cart.length === 0) {
+    return null;
   }
 
   // ]V#Hd8?_
