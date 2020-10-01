@@ -27,7 +27,7 @@ const ProductEdit = (props) => {
   if (!product) return <div>Loading...</div>;
 
   return (
-    <div className="ui segment" style={{ maxWidth: '40vw', margin: 'auto' }}>
+    <div className="ui segment" style={{ maxWidth: '40vw', margin: 'auto', marginBottom: '20px' }}>
       <h3 className="ui dividing header">Edit Product</h3>
       <ProductForm
         initialValues={_.pick(product, 'name', 'image', 'price', 'stock', 'description')}

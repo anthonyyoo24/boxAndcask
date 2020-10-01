@@ -107,8 +107,6 @@ export const fetchProduct = (id) => async (dispatch) => {
 export const fetchProducts = () => async (dispatch) => {
   const response = await products.get('/products');
 
-  console.log(response.data);
-
   dispatch({ type: FETCH_PRODUCTS, payload: response.data });
 };
 

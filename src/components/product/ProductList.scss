@@ -1,0 +1,10 @@
+@import '../../sass/variables.scss';
+
+.product-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.product-card {
+  width: 100%;
+}

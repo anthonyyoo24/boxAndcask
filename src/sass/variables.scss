@@ -1,0 +1,85 @@
+//---------------------------COLORS---------------------------
+
+// lightest to darkest (ie. 1of5 is lightest and 5of5 is darkest)
+
+// Primary
+
+$blue-dark-1of5: hsl(205, 67%, 45%);
+$blue-dark-2of5: hsl(205, 76%, 39%);
+$blue-dark-3of5: hsl(205, 82%, 33%);
+$blue-dark-4of5: hsl(205, 87%, 29%);
+$blue-dark-5of5: hsl(205, 100%, 21%);
+
+$blue-light-1of5: hsl(205, 79%, 92%);
+$blue-light-1of5: hsl(205, 97%, 85%);
+$blue-light-1of5: hsl(205, 84%, 74%);
+$blue-light-1of5: hsl(205, 74%, 65%);
+$blue-light-1of5: hsl(205, 65%, 55%);
+
+$yellow-dark-1of5: hsl(42, 87%, 55%);
+$yellow-dark-2of5: hsl(36, 77%, 49%);
+$yellow-dark-3of5: hsl(29, 80%, 44%);
+$yellow-dark-4of5: hsl(22, 82%, 39%);
+$yellow-dark-5of5: hsl(15, 86%, 30%);
+
+$yellow-light-1of5: hsl(49, 100%, 96%);
+$yellow-light-2of5: hsl(48, 100%, 88%);
+$yellow-light-3of5: hsl(48, 95%, 76%);
+$yellow-light-4of5: hsl(48, 94%, 68%);
+$yellow-light-5of5: hsl(44, 92%, 63%);
+
+// Neutrals
+
+$blue-grey-light-1of5: hsl(210, 36%, 96%);
+$blue-grey-light-2of5: hsl(212, 33%, 89%);
+$blue-grey-light-3of5: hsl(210, 31%, 80%);
+$blue-grey-light-4of5: hsl(211, 27%, 70%);
+$blue-grey-light-5of5: hsl(209, 23%, 60%);
+
+$blue-grey-dark-1of5: hsl(210, 22%, 49%);
+$blue-grey-dark-2of5: hsl(209, 28%, 39%);
+$blue-grey-dark-3of5: hsl(209, 34%, 30%);
+$blue-grey-dark-4of5: hsl(211, 39%, 23%);
+$blue-grey-dark-5of5: hsl(209, 61%, 16%);
+
+// Supporting
+
+$red-light-1of5: hsl(360, 100%, 97%);
+$red-light-2of5: hsl(360, 82%, 89%);
+$red-light-3of5: hsl(360, 77%, 78%);
+$red-light-4of5: hsl(360, 71%, 66%);
+$red-light-5of5: hsl(360, 64%, 55%);
+
+$red-dark-1of5: hsl(360, 67%, 44%);
+$red-dark-2of5: hsl(360, 72%, 38%);
+$red-dark-3of5: hsl(360, 79%, 32%);
+$red-dark-4of5: hsl(360, 85%, 25%);
+$red-dark-5of5: hsl(360, 92%, 20%);
+
+$cyan-light-1of5: hsl(186, 100%, 94%);
+$cyan-light-2of5: hsl(185, 94%, 87%);
+$cyan-light-3of5: hsl(184, 80%, 74%);
+$cyan-light-4of5: hsl(184, 65%, 59%);
+$cyan-light-5of5: hsl(185, 57%, 50%);
+
+$cyan-dark-1of5: hsl(185, 62%, 45%);
+$cyan-dark-2of5: hsl(184, 77%, 34%);
+$cyan-dark-3of5: hsl(185, 81%, 29%);
+$cyan-dark-4of5: hsl(185, 84%, 25%);
+$cyan-dark-5of5: hsl(184, 91%, 17%);
+
+//---------------------------SHADOWS---------------------------
+
+// Smallest to largest
+
+$shadow-single-1of5: 0 1px 3px hsla(0, 0, 0, 0.2);
+$shadow-single-2of5: 0 4px 6px hsla(0, 0, 0, 0.2);
+$shadow-single-3of5: 0 5px 15px hsla(0, 0, 0, 0.2);
+$shadow-single-4of5: 0 10px 24px hsla(0, 0, 0, 0.2);
+$shadow-single-5of5: 0 15px 35px hsla(0, 0, 0, 0.2);
+
+$shadow-double-1of5: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-double-2of5: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+$shadow-double-3of5: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+$shadow-double-4of5: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+$shadow-double-5of5: 0 20px 40px rgba(0, 0, 0, 0.2);
