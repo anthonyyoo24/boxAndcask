@@ -1,10 +1,45 @@
 @import '../../sass/variables.scss';
+@import '../../sass/base.scss';
 
-.product-details {
+.product-list {
+  font-size: 1.6rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  // grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  gap: 1.6rem;
 }
 
 .product-card {
-  width: 100%;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  box-shadow: $shadow-double-1of5;
+  background-color: #ffffff;
+  transition: all 0.5s;
+
+  &:hover {
+    box-shadow: $shadow-double-3of5;
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+
+  &__content {
+    padding: 0.8rem;
+  }
+
+  &__name {
+    color: $blue-grey-dark-5of5;
+  }
+
+  &__price {
+    margin-top: 0.4rem;
+    font-weight: 700;
+  }
+}
+
+.pagination {
+  text-align: center;
+  margin: 4.8rem 0;
+  font-size: 1.4rem !important;
 }

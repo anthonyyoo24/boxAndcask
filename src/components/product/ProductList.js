@@ -1,3 +1,4 @@
+import './ProductList.scss';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,10 +7,10 @@ import { Pagination } from 'semantic-ui-react';
 const ProductList = () => {
   const products = useSelector((state) => Object.values(state.products));
   const searchedProducts = useSelector((state) => Object.values(state.searchedProducts));
-  const currentUserId = useSelector((state) => state.auth.userId);
+  // const currentUserId = useSelector((state) => state.auth.userId);
 
   const [activePage, setActivePage] = useState(1);
-  const productsPerPage = 6;
+  const productsPerPage = 8;
   const totalPages =
     searchedProducts.length > 0
       ? Math.ceil(searchedProducts.length / productsPerPage)
@@ -19,20 +20,20 @@ const ProductList = () => {
     if (activePage > totalPages) setActivePage(1);
   }, [activePage, totalPages]);
 
-  const renderAdmin = (product) => {
-    if (product.userId === currentUserId) {
-      return (
-        <div className="right floated content">
-          <Link to={`/products/edit/${product.id}`} className="ui button primary">
-            Edit
-          </Link>
-          <Link to={`/products/delete/${product.id}`} className="ui button negative">
-            Delete
-          </Link>
-        </div>
-      );
-    }
-  };
+  // const renderAdmin = (product) => {
+  //   if (product.userId === currentUserId) {
+  //     return (
+  //       <div className="right floated content">
+  //         <Link to={`/products/edit/${product.id}`} className="ui button primary">
+  //           Edit
+  //         </Link>
+  //         <Link to={`/products/delete/${product.id}`} className="ui button negative">
+  //           Delete
+  //         </Link>
+  //       </div>
+  //     );
+  //   }
+  // };
 
   const renderList = () => {
     const list = searchedProducts.length > 0 ? searchedProducts : products;
@@ -46,19 +47,17 @@ const ProductList = () => {
       const image = require(`../../img/${product.image}`);
 
       return (
-        <div key={product.id} className="ui card">
-          <Link to={`/products/${product.id}`} className="image">
-            <img src={image} alt={product.name} />
+        <div key={product.id} className="product-card">
+          <Link to={`/products/${product.id}`}>
+            <img src={image} alt={product.name} className="product-card__img" />
           </Link>
-          <div className="content">
-            <Link to={`/products/${product.id}`} className="header">
+          <div className="product-card__content">
+            <Link to={`/products/${product.id}`} className="product-card__name">
               {product.name}
             </Link>
-            <div className="meta">
-              <p>${product.price}</p>
-            </div>
+            <p className="product-card__price">${product.price}</p>
           </div>
-          {renderAdmin(product)}
+          {/* {renderAdmin(product)} */}
         </div>
       );
     });
@@ -67,10 +66,10 @@ const ProductList = () => {
   return (
     <div>
       <div>
-        <h2 className="ui header">Products</h2>
-        <div className="ui three stackable cards">{renderList()}</div>
+        <h2>Products</h2>
+        <div className="product-list">{renderList()}</div>
       </div>
-      <div style={{ textAlign: 'center', margin: '30px 0' }}>
+      <div className="pagination">
         <Pagination
           activePage={activePage}
           onPageChange={(e, { activePage }) => setActivePage(activePage)}
