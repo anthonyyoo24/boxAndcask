@@ -1,4 +1,5 @@
 import '../../sass/style.scss';
+import './ProductDetails.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -33,9 +34,17 @@ const ProductDetails = (props) => {
 
   const renderStockStatus = () => {
     if (product.stock > 0) {
-      return <div>In stock</div>;
+      return (
+        <div className="product-details__stock-status">
+          <i className="product-details__stock-status--available check circle icon"></i>In stock
+        </div>
+      );
     } else {
-      return <div>Out of stock</div>;
+      return (
+        <div className="product-details__stock-status">
+          <i className="product-details__stock-status--unavailable times circle icon"></i>Out of stock
+        </div>
+      );
     }
   };
 
@@ -52,7 +61,7 @@ const ProductDetails = (props) => {
       }
 
       return (
-        <div>
+        <div className="product-details__quantity">
           Quantity:&nbsp;
           <select
             onChange={(e) => {
@@ -70,11 +79,11 @@ const ProductDetails = (props) => {
   const image = require(`../../img/${product.image}`);
 
   return (
-    <div className="details">
-      <img className="details__img" src={image} alt={product.name} />
-      <div className="details__content">
-        <h2>{product.name}</h2>
-        <h3>${product.price}</h3>
+    <div className="product-details">
+      <img className="product-details__img" src={image} alt={product.name} />
+      <div className="product-details__content">
+        <p className="product-details__name">{product.name}</p>
+        <p className="product-details__price">${product.price}</p>
         {renderStockStatus()}
         {renderQuantity(product.stock)}
         <br />
@@ -87,9 +96,9 @@ const ProductDetails = (props) => {
             Add to Cart
           </Link>
         ) : null}
-        <div>
-          <h4>Product Description</h4>
-          {product.description}
+        <div className="product-details__description">
+          <p className="product-details__description-header">Product Description</p>
+          <p className="product-details__description-text">{product.description}</p>
         </div>
         {renderAdmin(product)}
       </div>

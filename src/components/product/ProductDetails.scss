@@ -1,0 +1,63 @@
+@import '../../sass/variables.scss';
+@import '../../sass/base.scss';
+
+.product-details {
+  max-width: 90%;
+  margin: auto;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  box-shadow: $shadow-double-2of5;
+  margin-top: 4.8rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  &__name {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+
+  &__price {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 1.2rem 0;
+  }
+
+  &__description {
+    margin-top: 1.6rem;
+  }
+
+  &__description-header {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  &__description-text {
+    color: $blue-grey-dark-2of5;
+  }
+
+  &__quantity {
+  }
+
+  &__stock-status {
+    margin-bottom: 0.4rem;
+    color: $blue-grey-light-5of5;
+
+    &--available {
+      color: $cyan-dark-2of5;
+    }
+
+    &--unavailable {
+      color: $red-light-5of5;
+    }
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__content {
+    padding: 2.4rem 3.2rem;
+  }
+}
