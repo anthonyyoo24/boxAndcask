@@ -1,8 +1,8 @@
 import '../../sass/style.scss';
+import '../../sass/components.scss';
 import './ProductDetails.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { addToCart, fetchProduct } from '../../actions';
 
 const ProductDetails = (props) => {
@@ -20,13 +20,19 @@ const ProductDetails = (props) => {
   const renderAdmin = (product) => {
     if (product.userId === currentUserId) {
       return (
-        <div className="right floated content">
-          <Link to={`/products/edit/${product.id}`} className="ui button primary">
+        <div className="product-details__admin">
+          <button
+            onClick={() => props.history.push(`/products/edit/${product.id}`)}
+            className="product-details__btn--secondary button-2of4"
+          >
             Edit
-          </Link>
-          <Link to={`/products/delete/${product.id}`} className="ui button negative">
+          </button>
+          <button
+            onClick={() => props.history.push(`/products/delete/${product.id}`)}
+            className="product-details__btn--tertiary button-2of4"
+          >
             Delete
-          </Link>
+          </button>
         </div>
       );
     }
@@ -42,7 +48,8 @@ const ProductDetails = (props) => {
     } else {
       return (
         <div className="product-details__stock-status">
-          <i className="product-details__stock-status--unavailable times circle icon"></i>Out of stock
+          <i className="product-details__stock-status--unavailable times circle icon"></i>Out of
+          stock
         </div>
       );
     }
@@ -87,20 +94,21 @@ const ProductDetails = (props) => {
         {renderStockStatus()}
         {renderQuantity(product.stock)}
         <br />
-        {product.stock > 0 ? (
-          <Link
-            to="/cart"
-            onClick={() => dispatch(addToCart(product, orderQuantity))}
-            className="ui button primary"
-          >
-            Add to Cart
-          </Link>
-        ) : null}
+        <div className="product-details__actions">
+          {product.stock > 0 ? (
+            <button
+              onClick={() => dispatch(addToCart(product, orderQuantity))}
+              className="product-details__btn--primary button-2of4"
+            >
+              Add to Cart
+            </button>
+          ) : null}
+          {renderAdmin(product)}
+        </div>
         <div className="product-details__description">
           <p className="product-details__description-header">Product Description</p>
           <p className="product-details__description-text">{product.description}</p>
         </div>
-        {renderAdmin(product)}
       </div>
     </div>
   );

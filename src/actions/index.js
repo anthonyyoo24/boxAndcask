@@ -49,11 +49,11 @@ export const paymentFail = () => {
   return { type: PAYMENT_FAIL };
 };
 
-export const addToCart = (product, orderQuantity) => {
-  return {
+export const addToCart = (product, orderQuantity) => (dispatch) => {
+  dispatch({
     type: ADD_TO_CART,
     payload: { ...product, orderQuantity },
-  };
+  });
 };
 
 export const removeFromCart = (id) => {
