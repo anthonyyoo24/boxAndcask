@@ -1,0 +1,35 @@
+@import '../sass/variables.scss';
+@import '../sass/base.scss';
+
+.cart-item {
+  &__quantity {
+    i {
+      color: $blue-grey-dark-5of5;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.1s;
+
+      &:active {
+        transform: translateY(0.75px);
+      }
+    }
+
+    input[type='number'] {
+      -moz-appearance: textfield;
+      width: 3.2rem;
+      height: 2.4rem;
+      margin: 0 0.4rem;
+      outline: none;
+      border: 2px solid $blue-grey-light-2of5;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import '../sass/style.scss';
+import './ShoppingCart.scss';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantity, emptyCart, paymentFail, removeFromCart } from '../actions';
@@ -10,33 +11,69 @@ const ShoppingCart = () => {
   const paymentSuccess = useSelector((state) => state.payment);
   const dispatch = useDispatch();
 
-  const renderQuantity = (stock, initialValue, product) => {
-    if (stock > 0) {
-      const options = [];
-
-      for (let i = 1; i <= stock; i++) {
-        options.push(
-          <option key={i} value={i}>
-            {i}
-          </option>
-        );
-      }
-
+  const renderQuantity = (product) => {
+    if (product.stock > 0) {
       return (
-        <div>
-          Quantity:&nbsp;
-          <select
-            onChange={(e) => {
-              dispatch(changeQuantity(product, e.target.value));
+        <div className="cart-item__quantity">
+          <i
+            className="minus icon"
+            onClick={() => {
+              if (product.orderQuantity > 1)
+                dispatch(changeQuantity(product, parseInt(product.orderQuantity) - 1));
             }}
-            defaultValue={initialValue}
-          >
-            {options}
-          </select>
+          ></i>
+          <input
+            onChange={(e) => {
+              if (parseInt(e.target.value) > product.stock) {
+                dispatch(changeQuantity(product, product.stock));
+              } else if (parseInt(e.target.value) < 1) {
+                dispatch(changeQuantity(product, 1));
+              } else {
+                dispatch(changeQuantity(product, e.target.value));
+              }
+            }}
+            value={product.orderQuantity}
+            type="number"
+          />
+          <i
+            className="plus icon"
+            onClick={() => {
+              if (product.orderQuantity < product.stock)
+                dispatch(changeQuantity(product, parseInt(product.orderQuantity) + 1));
+            }}
+          ></i>
         </div>
       );
     }
   };
+
+  // const renderQuantity = (stock, initialValue, product) => {
+  //   if (stock > 0) {
+  //     const options = [];
+
+  //     for (let i = 1; i <= stock; i++) {
+  //       options.push(
+  //         <option key={i} value={i}>
+  //           {i}
+  //         </option>
+  //       );
+  //     }
+
+  //     return (
+  //       <div>
+  //         Quantity:&nbsp;
+  //         <select
+  //           onChange={(e) => {
+  //             dispatch(changeQuantity(product, e.target.value));
+  //           }}
+  //           defaultValue={initialValue}
+  //         >
+  //           {options}
+  //         </select>
+  //       </div>
+  //     );
+  //   }
+  // };
 
   const renderList = () => {
     return cart.map((product) => {
@@ -48,7 +85,7 @@ const ShoppingCart = () => {
           <div className="cart__content">
             <h3>{product.name}</h3>
             <h4>${product.price}</h4>
-            {renderQuantity(product.stock, product.orderQuantity, product)}
+            {renderQuantity(product)}
             <br />
             <button
               onClick={() => dispatch(removeFromCart(product.id))}
