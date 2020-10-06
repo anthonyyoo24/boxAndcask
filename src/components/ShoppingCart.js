@@ -24,9 +24,10 @@ const ShoppingCart = () => {
           ></i>
           <input
             onChange={(e) => {
+              console.log(e.target.value);
               if (parseInt(e.target.value) > product.stock) {
                 dispatch(changeQuantity(product, product.stock));
-              } else if (parseInt(e.target.value) < 1) {
+              } else if (parseInt(e.target.value) < 1 || !e.target.value) {
                 dispatch(changeQuantity(product, 1));
               } else {
                 dispatch(changeQuantity(product, e.target.value));
@@ -80,9 +81,9 @@ const ShoppingCart = () => {
       const image = require(`../img/${product.image}`);
 
       return (
-        <div key={product.id} className="ui vertical segment cart__item">
-          <img className="cart__img" src={image} alt={product.name} />
-          <div className="cart__content">
+        <div key={product.id} className="cart-item">
+          <img className="cart-item__img" src={image} alt={product.name} />
+          <div className="cart-item__content">
             <h3>{product.name}</h3>
             <h4>${product.price}</h4>
             {renderQuantity(product)}
@@ -119,7 +120,7 @@ const ShoppingCart = () => {
   if (!paymentSuccess && cart.length > 0) {
     return (
       <div className="cart-page">
-        <div className="cart">
+        <div>
           {renderList()}
           {renderEmptyCart()}
         </div>
