@@ -49,11 +49,28 @@ export const paymentFail = () => {
   return { type: PAYMENT_FAIL };
 };
 
-export const addToCart = (product, orderQuantity) => (dispatch) => {
-  dispatch({
-    type: ADD_TO_CART,
-    payload: { ...product, orderQuantity },
-  });
+export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
+  const cart = getState().cart;
+  const totalQuantity = cart[product.id]
+    ? parseInt(orderQuantity) + parseInt(cart[product.id].orderQuantity)
+    : null  ;
+
+  if (cart[product.id] && product.stock < totalQuantity) {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { ...product, orderQuantity: product.stock },
+    });
+  } else if (cart[product.id] && product.stock > totalQuantity) {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { ...product, orderQuantity: totalQuantity },
+    });
+  } else {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { ...product, orderQuantity },
+    });
+  }
 };
 
 export const removeFromCart = (id) => {

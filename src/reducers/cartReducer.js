@@ -13,24 +13,31 @@ const INITIAL_STATE = JSON.parse(localStorage.getItem('cart')) || {};
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      if (!state[action.payload.id]) {
-        localStorage.setItem(
-          'cart',
-          JSON.stringify({ ...state, [action.payload.id]: action.payload })
-        );
+      // if (!state[action.payload.id]) {
+      //   localStorage.setItem(
+      //     'cart',
+      //     JSON.stringify({ ...state, [action.payload.id]: action.payload })
+      //   );
 
-        return { ...state, [action.payload.id]: action.payload };
-      } else {
-        const previousQuantity = parseInt(state[action.payload.id].orderQuantity);
-        action.payload.orderQuantity = previousQuantity + parseInt(action.payload.orderQuantity);
+      //   return { ...state, [action.payload.id]: action.payload };
+      // } else {
+      //   const previousQuantity = parseInt(state[action.payload.id].orderQuantity);
+      //   action.payload.orderQuantity = previousQuantity + parseInt(action.payload.orderQuantity);
 
-        localStorage.setItem(
-          'cart',
-          JSON.stringify({ ...state, [action.payload.id]: action.payload })
-        );
+      //   localStorage.setItem(
+      //     'cart',
+      //     JSON.stringify({ ...state, [action.payload.id]: action.payload })
+      //   );
 
-        return { ...state, [action.payload.id]: action.payload };
-      }
+      //   return { ...state, [action.payload.id]: action.payload };
+      // }
+
+      localStorage.setItem(
+        'cart',
+        JSON.stringify({ ...state, [action.payload.id]: action.payload })
+      );
+
+      return { ...state, [action.payload.id]: action.payload };
     }
     case REMOVE_FROM_CART: {
       localStorage.setItem('cart', JSON.stringify(_.omit(state, action.payload)));
