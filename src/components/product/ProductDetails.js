@@ -17,6 +17,40 @@ const ProductDetails = (props) => {
 
   if (!product) return <div>Loading...</div>;
 
+  const renderQuantity = (stock) => {
+    if (stock > 0) {
+      return (
+        <div className="product-details__quantity">
+          <i
+            className="minus icon"
+            onClick={() => {
+              if (orderQuantity > 1) setOrderQuantity(parseInt(orderQuantity) - 1);
+            }}
+          ></i>
+          <input
+            onChange={(e) => {
+              if (parseInt(e.target.value) > stock) {
+                setOrderQuantity(stock);
+              } else if (parseInt(e.target.value) < 1) {
+                setOrderQuantity(1);
+              } else {
+                setOrderQuantity(e.target.value);
+              }
+            }}
+            value={orderQuantity}
+            type="number"
+          />
+          <i
+            className="plus icon"
+            onClick={() => {
+              if (orderQuantity < stock) setOrderQuantity(parseInt(orderQuantity) + 1);
+            }}
+          ></i>
+        </div>
+      );
+    }
+  };
+
   const renderAdmin = (product) => {
     if (product.userId === currentUserId) {
       return (
@@ -42,7 +76,8 @@ const ProductDetails = (props) => {
     if (product.stock > 0) {
       return (
         <div className="product-details__stock-status">
-          <i className="product-details__stock-status--available check circle icon"></i>In stock
+          <i className="product-details__stock-status--available check circle icon"></i>
+          <span>{product.stock}</span> left in stock
         </div>
       );
     } else {
@@ -55,33 +90,33 @@ const ProductDetails = (props) => {
     }
   };
 
-  const renderQuantity = (stock) => {
-    if (stock > 0) {
-      const options = [];
+  // const renderQuantity = (stock) => {
+  //   if (stock > 0) {
+  //     const options = [];
 
-      for (let i = 1; i <= stock; i++) {
-        options.push(
-          <option key={i} value={i}>
-            {i}
-          </option>
-        );
-      }
+  //     for (let i = 1; i <= stock; i++) {
+  //       options.push(
+  //         <option key={i} value={i}>
+  //           {i}
+  //         </option>
+  //       );
+  //     }
 
-      return (
-        <div className="product-details__quantity">
-          Quantity:&nbsp;
-          <select
-            onChange={(e) => {
-              setOrderQuantity(e.target.value);
-            }}
-            value={orderQuantity}
-          >
-            {options}
-          </select>
-        </div>
-      );
-    }
-  };
+  //     return (
+  //       <div className="product-details__quantity">
+  //         Quantity:&nbsp;
+  //         <select
+  //           onChange={(e) => {
+  //             setOrderQuantity(e.target.value);
+  //           }}
+  //           value={orderQuantity}
+  //         >
+  //           {options}
+  //         </select>
+  //       </div>
+  //     );
+  //   }
+  // };
 
   const image = require(`../../img/${product.image}`);
 
