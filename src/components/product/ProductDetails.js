@@ -57,13 +57,13 @@ const ProductDetails = (props) => {
         <div className="product-details__admin">
           <button
             onClick={() => props.history.push(`/products/edit/${product.id}`)}
-            className="product-details__btn--secondary button-2of4"
+            className="secondary button-2of4"
           >
             Edit
           </button>
           <button
             onClick={() => props.history.push(`/products/delete/${product.id}`)}
-            className="product-details__btn--tertiary button-2of4"
+            className="tertiary button-2of4"
           >
             Delete
           </button>
@@ -83,40 +83,12 @@ const ProductDetails = (props) => {
     } else {
       return (
         <div className="product-details__stock-status">
-          <i className="product-details__stock-status--unavailable times circle icon"></i>Out of
-          stock
+          <i className="product-details__stock-status--unavailable times circle icon"></i>&nbsp;Out
+          of stock
         </div>
       );
     }
   };
-
-  // const renderQuantity = (stock) => {
-  //   if (stock > 0) {
-  //     const options = [];
-
-  //     for (let i = 1; i <= stock; i++) {
-  //       options.push(
-  //         <option key={i} value={i}>
-  //           {i}
-  //         </option>
-  //       );
-  //     }
-
-  //     return (
-  //       <div className="product-details__quantity">
-  //         Quantity:&nbsp;
-  //         <select
-  //           onChange={(e) => {
-  //             setOrderQuantity(e.target.value);
-  //           }}
-  //           value={orderQuantity}
-  //         >
-  //           {options}
-  //         </select>
-  //       </div>
-  //     );
-  //   }
-  // };
 
   const image = require(`../../img/${product.image}`);
 
@@ -133,7 +105,7 @@ const ProductDetails = (props) => {
           {product.stock > 0 ? (
             <button
               onClick={() => dispatch(addToCart(product, orderQuantity))}
-              className="product-details__btn--primary button-2of4"
+              className="primary button-2of4"
             >
               Add to Cart
             </button>

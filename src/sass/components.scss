@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 //---------------------------BUTTONS---------------------------
 // smallest to largest
 
@@ -8,6 +10,50 @@
   font-weight: 500;
   cursor: pointer;
   outline: none;
+}
+
+.primary {
+  background-color: $blue-dark-1of5;
+  color: white;
+  box-shadow: $shadow-single-2of5;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &:hover {
+    color: $blue-dark-1of5;
+    background-color: $blue-light-1of5;
+  }
+
+  &:active {
+    box-shadow: $shadow-single-1of5;
+  }
+}
+
+.secondary {
+  color: $blue-dark-1of5;
+  background-color: white;
+  border: 2px solid $blue-light-2of5;
+  box-shadow: $shadow-single-1of5;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &:hover {
+    background-color: $blue-light-2of5;
+    color: white;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.tertiary {
+  color: $blue-dark-1of5;
+  background: none;
+  margin-left: 0.8rem;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &:hover {
+    background-color: $blue-grey-light-1of5;
+  }
 }
 
 .button-1of4 {
