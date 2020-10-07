@@ -1,7 +1,54 @@
 @import '../sass/variables.scss';
 @import '../sass/base.scss';
 
+.cart-page {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-items: center;
+  align-items: start;
+}
+
+.shopping-cart {
+  justify-self: stretch;
+}
+
 .cart-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+
+  height: 9.6rem;
+  margin-bottom: 1.6rem;
+  box-shadow: $shadow-single-1of5;
+  background-color: white;
+  // transition: box-shadow 0.5s;
+
+  // &:hover {
+  //   box-shadow: $shadow-single-2of5;
+  // }
+
+  &__img {
+    justify-self: start;
+    height: 100%;
+    padding: 1.2rem;
+  }
+
+  &__name {
+    justify-self: start;
+  }
+
+  i {
+    font-size: 2rem;
+    color: $blue-grey-light-5of5;
+    cursor: pointer;
+    transition: all 0.1s;
+
+    &:active {
+      transform: translateY(0.75px);
+    }
+  }
+
   &__quantity {
     i {
       color: $blue-grey-dark-5of5;

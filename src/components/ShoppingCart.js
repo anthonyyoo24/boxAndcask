@@ -24,7 +24,6 @@ const ShoppingCart = () => {
           ></i>
           <input
             onChange={(e) => {
-              console.log(e.target.value);
               if (parseInt(e.target.value) > product.stock) {
                 dispatch(changeQuantity(product, product.stock));
               } else if (parseInt(e.target.value) < 1 || !e.target.value) {
@@ -48,34 +47,6 @@ const ShoppingCart = () => {
     }
   };
 
-  // const renderQuantity = (stock, initialValue, product) => {
-  //   if (stock > 0) {
-  //     const options = [];
-
-  //     for (let i = 1; i <= stock; i++) {
-  //       options.push(
-  //         <option key={i} value={i}>
-  //           {i}
-  //         </option>
-  //       );
-  //     }
-
-  //     return (
-  //       <div>
-  //         Quantity:&nbsp;
-  //         <select
-  //           onChange={(e) => {
-  //             dispatch(changeQuantity(product, e.target.value));
-  //           }}
-  //           defaultValue={initialValue}
-  //         >
-  //           {options}
-  //         </select>
-  //       </div>
-  //     );
-  //   }
-  // };
-
   const renderList = () => {
     return cart.map((product) => {
       const image = require(`../img/${product.image}`);
@@ -83,18 +54,10 @@ const ShoppingCart = () => {
       return (
         <div key={product.id} className="cart-item">
           <img className="cart-item__img" src={image} alt={product.name} />
-          <div className="cart-item__content">
-            <h3>{product.name}</h3>
-            <h4>${product.price}</h4>
-            {renderQuantity(product)}
-            <br />
-            <button
-              onClick={() => dispatch(removeFromCart(product.id))}
-              className="ui button negative"
-            >
-              Remove
-            </button>
-          </div>
+          <span className="cart-item__name">{product.name}</span>
+          {renderQuantity(product)}
+          <span className="cart-item__price">${product.price}</span>
+          <i className=" x icon" onClick={() => dispatch(removeFromCart(product.id))}></i>
         </div>
       );
     });
@@ -103,7 +66,7 @@ const ShoppingCart = () => {
   const renderEmptyCart = () => {
     if (cart.length > 1) {
       return (
-        <button onClick={() => dispatch(emptyCart())} className="ui button negative">
+        <button onClick={() => dispatch(emptyCart())} className="cart-item__btn--secondary button-2of4">
           Empty Cart
         </button>
       );
@@ -120,7 +83,7 @@ const ShoppingCart = () => {
   if (!paymentSuccess && cart.length > 0) {
     return (
       <div className="cart-page">
-        <div>
+        <div className="shopping-cart">
           {renderList()}
           {renderEmptyCart()}
         </div>
