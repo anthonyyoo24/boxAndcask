@@ -20,21 +20,6 @@ const ProductList = () => {
     if (activePage > totalPages) setActivePage(1);
   }, [activePage, totalPages]);
 
-  // const renderAdmin = (product) => {
-  //   if (product.userId === currentUserId) {
-  //     return (
-  //       <div className="right floated content">
-  //         <Link to={`/products/edit/${product.id}`} className="ui button primary">
-  //           Edit
-  //         </Link>
-  //         <Link to={`/products/delete/${product.id}`} className="ui button negative">
-  //           Delete
-  //         </Link>
-  //       </div>
-  //     );
-  //   }
-  // };
-
   const renderList = () => {
     const list = searchedProducts.length > 0 ? searchedProducts : products;
     const paginatedList = [];
@@ -57,7 +42,6 @@ const ProductList = () => {
             </Link>
             <p className="product-card__price">${product.price}</p>
           </div>
-          {/* {renderAdmin(product)} */}
         </div>
       );
     });

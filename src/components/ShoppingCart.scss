@@ -32,10 +32,12 @@
     justify-self: start;
     height: 100%;
     padding: 1.2rem;
+    cursor: pointer;
   }
 
   &__name {
     justify-self: start;
+    color: $blue-grey-dark-5of5;
   }
 
   i {

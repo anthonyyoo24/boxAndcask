@@ -2,11 +2,12 @@ import '../sass/style.scss';
 import './ShoppingCart.scss';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { changeQuantity, emptyCart, paymentFail, removeFromCart } from '../actions';
 import CartSummary from './CartSummary';
-import history from '../history';
+// import history from '../history';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ history }) => {
   const cart = useSelector((state) => Object.values(state.cart));
   const paymentSuccess = useSelector((state) => state.payment);
   const dispatch = useDispatch();
@@ -53,8 +54,15 @@ const ShoppingCart = () => {
 
       return (
         <div key={product.id} className="cart-item">
-          <img className="cart-item__img" src={image} alt={product.name} />
-          <span className="cart-item__name">{product.name}</span>
+          <img
+            onClick={() => history.push(`/products/${product.id}`)}
+            className="cart-item__img"
+            src={image}
+            alt={product.name}
+          />
+          <Link to={`/products/${product.id}`} className="cart-item__name">
+            {product.name}
+          </Link>
           {renderQuantity(product)}
           <span className="cart-item__price">${product.price}</span>
           <i className=" x icon" onClick={() => dispatch(removeFromCart(product.id))}></i>
@@ -66,7 +74,10 @@ const ShoppingCart = () => {
   const renderEmptyCart = () => {
     if (cart.length > 1) {
       return (
-        <button onClick={() => dispatch(emptyCart())} className="cart-item__btn--secondary button-2of4">
+        <button
+          onClick={() => dispatch(emptyCart())}
+          className="cart-item__btn--secondary button-2of4"
+        >
           Empty Cart
         </button>
       );
@@ -111,8 +122,6 @@ const ShoppingCart = () => {
   } else if (paymentSuccess && cart.length === 0) {
     return null;
   }
-
-  // ]V#Hd8?_
 };
 
 export default ShoppingCart;
