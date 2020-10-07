@@ -76,7 +76,7 @@ const ShoppingCart = ({ history }) => {
       return (
         <button
           onClick={() => dispatch(emptyCart())}
-          className="cart-item__btn--secondary button-2of4"
+          className="tertiary button-2of4"
         >
           Empty Cart
         </button>
