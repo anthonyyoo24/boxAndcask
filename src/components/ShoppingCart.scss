@@ -15,7 +15,7 @@
 
 .cart-item {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   align-items: center;
   justify-items: center;
 
@@ -41,13 +41,22 @@
     color: $blue-grey-dark-5of5;
   }
 
+  &__stock {
+    color: $blue-grey-light-5of5;
+
+    span {
+      font-weight: 700;
+    }
+  }
+
   &__price {
     justify-self: end;
+    font-weight: 700;
   }
 
   i {
     font-size: 2rem;
-    color: $blue-grey-light-5of5;
+    color: $blue-grey-light-3of5;
     cursor: pointer;
     transition: all 0.1s;
 

@@ -33,13 +33,8 @@ const ProductDetails = (props) => {
                 setOrderQuantity(1);
               } else if (parseInt(e.target.value) > stock) {
                 setOrderQuantity(stock);
-              } else {
+              } else if (!isNaN(parseInt(e.target.value))) {
                 setOrderQuantity(e.target.value);
-              }
-            }}
-            onBlur={(e) => {
-              if (!e.target.value) {
-                setOrderQuantity(1);
               }
             }}
             value={orderQuantity}

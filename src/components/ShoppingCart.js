@@ -63,6 +63,9 @@ const ShoppingCart = ({ history }) => {
             {product.name}
           </Link>
           {renderQuantity(product)}
+          <span className="cart-item__stock">
+            <span>{product.stock} </span>left in stock
+          </span>
           <span className="cart-item__price">${product.price}</span>
           <i className=" x icon" onClick={() => dispatch(removeFromCart(product.id))}></i>
         </div>
