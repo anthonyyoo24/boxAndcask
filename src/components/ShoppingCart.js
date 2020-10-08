@@ -74,10 +74,7 @@ const ShoppingCart = ({ history }) => {
   const renderEmptyCart = () => {
     if (cart.length > 1) {
       return (
-        <button
-          onClick={() => dispatch(emptyCart())}
-          className="tertiary button-2of4"
-        >
+        <button onClick={() => dispatch(emptyCart())} className="tertiary button-2of4">
           Empty Cart
         </button>
       );
@@ -89,7 +86,7 @@ const ShoppingCart = ({ history }) => {
       dispatch(paymentFail());
       history.push('/');
     }
-  }, [cart.length, paymentSuccess, dispatch]);
+  }, [cart.length, paymentSuccess, dispatch, history]);
 
   if (!paymentSuccess && cart.length > 0) {
     return (
