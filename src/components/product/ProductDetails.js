@@ -48,7 +48,7 @@ const ProductDetails = (props) => {
           <i
             className="plus icon"
             onClick={() => {
-              if (orderQuantity < stock) setOrderQuantity(parseInt(orderQuantity) + 1);
+              if (orderQuantity < parseInt(stock)) setOrderQuantity(parseInt(orderQuantity) + 1);
             }}
           ></i>
         </div>
