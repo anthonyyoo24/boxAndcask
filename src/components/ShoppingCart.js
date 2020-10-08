@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { changeQuantity, emptyCart, paymentFail, removeFromCart } from '../actions';
 import CartSummary from './CartSummary';
-// import history from '../history';
 
 const ShoppingCart = ({ history }) => {
   const cart = useSelector((state) => Object.values(state.cart));
@@ -25,11 +24,11 @@ const ShoppingCart = ({ history }) => {
           ></i>
           <input
             onChange={(e) => {
-              if (parseInt(e.target.value) > product.stock) {
-                dispatch(changeQuantity(product, product.stock));
-              } else if (parseInt(e.target.value) < 1 || !e.target.value) {
+              if (parseInt(e.target.value) < 1) {
                 dispatch(changeQuantity(product, 1));
-              } else {
+              } else if (parseInt(e.target.value) > product.stock) {
+                dispatch(changeQuantity(product, product.stock));
+              } else if (!isNaN(parseInt(e.target.value))) {
                 dispatch(changeQuantity(product, e.target.value));
               }
             }}
@@ -39,7 +38,7 @@ const ShoppingCart = ({ history }) => {
           <i
             className="plus icon"
             onClick={() => {
-              if (product.orderQuantity < product.stock)
+              if (product.orderQuantity < parseInt(product.stock))
                 dispatch(changeQuantity(product, parseInt(product.orderQuantity) + 1));
             }}
           ></i>
