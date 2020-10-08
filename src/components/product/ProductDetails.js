@@ -29,12 +29,17 @@ const ProductDetails = (props) => {
           ></i>
           <input
             onChange={(e) => {
-              if (parseInt(e.target.value) > stock) {
-                setOrderQuantity(stock);
-              } else if (parseInt(e.target.value) < 1) {
+              if (parseInt(e.target.value) < 1) {
                 setOrderQuantity(1);
+              } else if (parseInt(e.target.value) > stock) {
+                setOrderQuantity(stock);
               } else {
                 setOrderQuantity(e.target.value);
+              }
+            }}
+            onBlur={(e) => {
+              if (!e.target.value) {
+                setOrderQuantity(1);
               }
             }}
             value={orderQuantity}
