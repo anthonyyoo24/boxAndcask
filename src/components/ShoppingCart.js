@@ -106,13 +106,11 @@ const ShoppingCart = ({ history }) => {
     }, 4000);
 
     return (
-      <div className="ui segment" style={{ maxWidth: '50vw', margin: 'auto' }}>
-        <div className="ui success message success-div">
-          <i className="check circle icon" style={{ fontSize: '40px', paddingTop: '8px' }}></i>
-          <div>
-            <div className="header">Thank you for your order!</div>
-            <p>Your payment has been accepted</p>
-          </div>
+      <div className="success">
+        <i className="check circle icon"></i>
+        <div className="success__content">
+          <div>Thank you for your order!</div>
+          <p>Your payment has been accepted</p>
         </div>
       </div>
     );

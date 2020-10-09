@@ -13,6 +13,36 @@
   justify-self: stretch;
 }
 
+.success {
+  border: 1.75px solid $cyan-dark-1of5;
+  width: 50%;
+  margin: auto;
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+  color: $cyan-dark-3of5;
+  background-color: white;
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: start;
+  grid-template-columns: 1fr 10fr;
+
+  i {
+    font-size: 2.4rem;
+  }
+
+  &__content {
+    div {
+      font-weight: 700;
+    }
+
+    p {
+      margin-top: 0.4rem;
+      font-size: 1.2rem;
+    }
+  }
+}
+
 .cart-item {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
