@@ -12,13 +12,19 @@ const renderError = ({ error, touched }) => {
   }
 };
 
-const renderInput = ({ input, label, meta, type }) => {
+const renderInput = ({ input, label, meta, type, minlength, maxlength }) => {
   const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
   const fieldInput =
     type === 'textarea' ? (
-      <textarea {...input} rows="5" maxlength="500" />
+      <textarea {...input} rows="5" minlength={minlength} maxlength={maxlength} />
     ) : (
-      <input {...input} autoComplete="off" type={type} />
+      <input
+        {...input}
+        autoComplete="off"
+        type={type}
+        minlength={minlength ? minlength : ''}
+        maxlength={maxlength ? maxlength : ''}
+      />
     );
 
   return (
@@ -33,11 +39,18 @@ const renderInput = ({ input, label, meta, type }) => {
 const ProductForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit(props.onSubmit)} className="ui form error">
-      <Field name="name" component={renderInput} label="Name" />
+      <Field name="name" component={renderInput} label="Name" minlength="1" maxlength="25" />
       <Field name="image" component={FileInput} label="Image" />
       <Field name="price" component={renderInput} label="Price" type="number" />
       <Field name="stock" component={renderInput} label="Stock Count" type="number" />
-      <Field name="description" component={renderInput} label="Description" type="textarea" />
+      <Field
+        name="description"
+        component={renderInput}
+        label="Description"
+        type="textarea"
+        minlength="1"
+        maxlength="500"
+      />
       <button className="ui button primary">Submit</button>
     </form>
   );
