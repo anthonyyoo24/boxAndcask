@@ -61,9 +61,11 @@ const validate = (formValues) => {
 
   if (!formValues.name) errors.name = 'Please enter the name of the product.';
   if (!formValues.price) errors.price = 'Please enter the price of the product.';
-  if (parseFloat(formValues.price) < 0.01 && formValues.price)
+  if (parseFloat(formValues.price) < 0.01)
     errors.price = 'Please enter a price greater than 1 cent.';
   if (!formValues.stock) errors.stock = 'Please enter the amount of stock of the product.';
+  if (parseFloat(formValues.stock) < 1) errors.stock = 'Please enter an amount greater than 1.';
+  if (!Number.isInteger(parseFloat(formValues.stock))) errors.stock = 'Please enter only integers';
   if (!formValues.description) errors.description = 'Please enter a description for the product.';
 
   return errors;
