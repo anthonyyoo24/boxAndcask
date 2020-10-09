@@ -17,17 +17,15 @@ const SearchBar = () => {
   }, [dispatch]);
 
   return (
-    <div className="item">
-      <form onSubmit={onSubmit} className="ui icon input">
-        <input
-          value={term}
-          onChange={(e) => setTerm(e.target.value)}
-          type="text"
-          placeholder="Search..."
-        />
-        <i onClick={onSubmit} className="search link icon"></i>
-      </form>
-    </div>
+    <form onSubmit={onSubmit} className="ui icon input" style={{ height: '33px' }}>
+      <input
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+        type="text"
+        placeholder="Search..."
+      />
+      <i onClick={onSubmit} className="search link icon"></i>
+    </form>
   );
 };
 

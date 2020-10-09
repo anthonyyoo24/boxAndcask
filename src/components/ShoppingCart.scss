@@ -53,11 +53,11 @@
   margin-bottom: 1.6rem;
   box-shadow: $shadow-single-1of5;
   background-color: white;
-  transition: box-shadow 0.5s;
+  // transition: box-shadow 0.5s;
 
-  &:hover {
-    box-shadow: $shadow-single-2of5;
-  }
+  // &:hover {
+  //   box-shadow: $shadow-single-2of5;
+  // }
 
   &__img {
     justify-self: start;

@@ -13,10 +13,10 @@ import Unauthorized from './Unauthorized';
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div>
       <Router history={history}>
-        <div>
-          <Header />
+        <Header />
+        <div className="ui container">
           <Switch>
             <Route path="/" exact component={ProductList} />
             <ProtectedRoute path="/products/new" exact component={ProductCreate} />

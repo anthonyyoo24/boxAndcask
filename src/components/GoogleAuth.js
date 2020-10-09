@@ -1,3 +1,4 @@
+import '../sass/components.scss';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAuth } from '../actions';
@@ -41,14 +42,18 @@ const GoogleAuth = () => {
       return null;
     } else if (isSignedIn) {
       return (
-        <button onClick={trySignOut} className="ui red google button">
+        <button
+          onClick={trySignOut}
+          className="ui red google button"
+          style={{ marginRight: '24px' }}
+        >
           <i className="google icon" />
           Sign Out
         </button>
       );
     } else {
       return (
-        <button onClick={trySignIn} className="ui red google button">
+        <button onClick={trySignIn} className="ui red google button" style={{ marginRight: '24px' }}>
           <i className="google icon" />
           Sign In with Google
         </button>

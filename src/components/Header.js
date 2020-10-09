@@ -1,3 +1,4 @@
+import './Header.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,34 +16,31 @@ const Header = () => {
   const renderCreate = () => {
     if (isSignedIn) {
       return (
-        <div className="ui item">
-          <Link to="/products/new" className="ui button primary">
-            Create Product
-          </Link>
-        </div>
+        <Link to="/products/new" className="header__create tertiary button-1of4">
+          Create Product
+        </Link>
       );
     }
   };
 
-  const cartIcon = require(`../img/svg/icon-shopping-cart.svg`);
+  // const cartIcon = require(`../img/svg/icon-shopping-cart.svg`);
 
   return (
-    <div className="ui secondary  menu">
-      <Link to="/" className="active item">
+    <div className="header">
+      <Link to="/" className="header__home tertiary button-2of4">
         Box&Cask
       </Link>
 
-      <div className="right menu">
-        <SearchBar />
+      <div className="header__div">
         {renderCreate()}
-        <Link to="/cart" className="ui item cart">
-          <img src={cartIcon} alt="shopping cart" />
+        <SearchBar />
+        <Link to="/cart" className="header__cart tertiary button-1of4">
+          {/* <img src={cartIcon} alt="shopping cart" /> */}
+          <i className="shopping cart icon"></i>
           {cartQuantity}
         </Link>
-        <div className="ui item">
-          <GoogleAuth />
-        </div>
       </div>
+      <GoogleAuth />
     </div>
   );
 };

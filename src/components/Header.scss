@@ -1,0 +1,40 @@
+@import '../sass/variables.scss';
+@import '../sass/base.scss';
+@import '../sass/components.scss';
+
+.header {
+  background-color: white;
+  height: 50px;
+  margin-bottom: 1.6rem;
+  box-shadow: $shadow-single-1of5;
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-items: end;
+
+  &__home {
+    justify-self: start;
+    margin-left: 24px;
+  }
+
+  &__create {
+    margin-right: 0.8rem;
+  }
+
+  &__div {
+    justify-self: center;
+
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+  }
+
+  &__cart {
+    justify-self: start;
+
+    i {
+      font-size: 1.8rem;
+    }
+  }
+}
