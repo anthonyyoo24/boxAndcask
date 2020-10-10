@@ -1,3 +1,4 @@
+import './ProductForm.scss';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import ProductForm from './ProductForm';
@@ -20,7 +21,7 @@ const ProductCreate = () => {
 
   return (
     <div className="ui segment" style={{ maxWidth: '40vw', margin: 'auto', marginBottom: '20px' }}>
-      <h3 className="ui dividing header">Create a Product</h3>
+      <h3>Create a Product</h3>
       <ProductForm onSubmit={onSubmit} />
     </div>
   );
