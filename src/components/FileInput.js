@@ -1,3 +1,4 @@
+import './product/ProductForm.scss';
 import React from 'react';
 
 const FileInput = ({ input, label }) => {
@@ -7,8 +8,8 @@ const FileInput = ({ input, label }) => {
 
   return (
     <div className="field">
-      <label>{label}</label>
-      <input onChange={onChange} type="file" accept=".jpg, .png, .jpeg" required />
+      <label className="form__label">{label}</label>
+      <input className="form__input" onChange={onChange} type="file" accept=".jpg, .png, .jpeg" required />
     </div>
   );
 };

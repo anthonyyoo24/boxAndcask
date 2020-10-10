@@ -4,7 +4,7 @@ import FileInput from '../FileInput';
 
 const renderError = ({ error, touched }) => {
   if (touched && error) {
-    return <div className="ui error message">{error}</div>;
+    return <div className="form__error ui error message">{error}</div>;
   }
 };
 
@@ -12,10 +12,17 @@ const renderInput = ({ input, label, meta, type, minlength, maxlength }) => {
   const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
   const fieldInput =
     type === 'textarea' ? (
-      <textarea {...input} rows="5" minlength={minlength} maxlength={maxlength} />
+      <textarea
+        {...input}
+        className="form__input"
+        rows="5"
+        minlength={minlength}
+        maxlength={maxlength}
+      />
     ) : (
       <input
         {...input}
+        className="form__input"
         autoComplete="off"
         type={type}
         minlength={minlength ? minlength : ''}
@@ -25,7 +32,7 @@ const renderInput = ({ input, label, meta, type, minlength, maxlength }) => {
 
   return (
     <div className={className}>
-      <label>{label}</label>
+      <label className="form__label">{label}</label>
       {fieldInput}
       {renderError(meta)}
     </div>
@@ -47,7 +54,7 @@ const ProductForm = (props) => {
         minlength="1"
         maxlength="500"
       />
-      <button className="ui button primary">Submit</button>
+      <button className="primary button-2of4">Submit</button>
     </form>
   );
 };

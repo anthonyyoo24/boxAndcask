@@ -1,0 +1,24 @@
+@import '../../sass/variables.scss';
+@import '../../sass/base.scss';
+
+.form-div {
+  max-width: 40%;
+  margin: auto;
+  font-size: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.form {
+  &__label {
+    font-size: 1.4rem !important;
+    font-weight: 500 !important;
+  }
+
+  &__input {
+    font-size: 1.4rem !important;
+  }
+
+  &__error {
+    font-size: 1.4rem !important;
+  }
+}
