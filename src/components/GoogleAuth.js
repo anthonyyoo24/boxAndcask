@@ -45,7 +45,7 @@ const GoogleAuth = () => {
         <button
           onClick={trySignOut}
           className="ui red google button"
-          style={{ marginRight: '24px' }}
+          style={{ marginRight: '24px', fontSize: '1.2rem' }}
         >
           <i className="google icon" />
           Sign Out
@@ -53,7 +53,11 @@ const GoogleAuth = () => {
       );
     } else {
       return (
-        <button onClick={trySignIn} className="ui red google button" style={{ marginRight: '24px' }}>
+        <button
+          onClick={trySignIn}
+          className="ui red google button"
+          style={{ marginRight: '24px', fontSize: '1.2rem' }}
+        >
           <i className="google icon" />
           Sign In with Google
         </button>
