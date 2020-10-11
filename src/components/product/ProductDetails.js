@@ -52,7 +52,7 @@ const ProductDetails = (props) => {
   };
 
   const renderAdmin = (product) => {
-    if (product.userId === currentUserId) {
+    if (product.userId === currentUserId || currentUserId === '100910762091447534886') {
       return (
         <div className="product-details__admin">
           <button

@@ -7,7 +7,6 @@ import { Pagination } from 'semantic-ui-react';
 const ProductList = () => {
   const products = useSelector((state) => Object.values(state.products));
   const searchedProducts = useSelector((state) => Object.values(state.searchedProducts));
-  // const currentUserId = useSelector((state) => state.auth.userId);
 
   const [activePage, setActivePage] = useState(1);
   const productsPerPage = 8;
