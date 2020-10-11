@@ -18,12 +18,12 @@ const ProductDelete = (props) => {
 
     return (
       <React.Fragment>
-        <button onClick={() => dispatch(deleteProduct(id))} className="ui button negative">
-          Delete
-        </button>
-        <Link to="/" className="ui button">
+        <Link to="/" className="modal__cancel tertiary button-2of4">
           Cancel
         </Link>
+        <button onClick={() => dispatch(deleteProduct(id))} className="delete button-2of4">
+          Delete
+        </button>
       </React.Fragment>
     );
   };
