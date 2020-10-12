@@ -112,10 +112,10 @@ const ProductDetails = (props) => {
           ) : null}
           {renderAdmin(product)}
         </div>
-        <div className="product-details__description">
-          <p className="product-details__description-header">Product Description</p>
-          <p className="product-details__description-text">{product.description}</p>
-        </div>
+      </div>
+      <div className="product-details__description">
+        <p className="product-details__description-header">Product Description</p>
+        <p className="product-details__description-text">{product.description}</p>
       </div>
     </div>
   );
