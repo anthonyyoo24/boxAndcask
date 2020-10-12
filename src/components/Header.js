@@ -28,12 +28,10 @@ const Header = () => {
 
   return (
     <div className="header">
-      <div className="header__left-div">
-        <Link to="/" className="header__home tertiary button-2of4">
-          Box&Cask
-        </Link>
-        <SearchBar />
-      </div>
+      <Link to="/" className="header__home tertiary button-2of4">
+        Box&Cask
+      </Link>
+      <SearchBar />
       <div className="header__right-div">
         {renderCreate()}
         <Link to="/cart" className="header__cart tertiary button-1of4">

@@ -1,11 +1,9 @@
 .search-bar {
-  width: 32rem;
+  justify-self: stretch;
 
-  // @media (max-width: 645px) {
-  //   width: 13rem;
-  // }
-
-  // @media (max-width: 555px) {
-  //   width: 10rem;
-  // }
+  @media (max-width: 665px) {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    margin: 0 0.8rem;
+  }
 }
