@@ -4,7 +4,7 @@
 
 .header {
   background-color: white;
-  height: 5rem;
+  height: 6rem;
   margin-bottom: 1.6rem;
   box-shadow: $shadow-single-1of5;
 
@@ -13,28 +13,48 @@
   align-items: center;
   justify-items: end;
 
-  &__home {
+  &__left-div {
     justify-self: start;
-    margin-left: 2.4rem;
   }
 
-  &__create {
-    margin-right: 0.8rem;
-  }
-
-  &__div {
+  &__home {
     justify-self: center;
+    margin: 0 6rem;
+    font-size: 1.6rem;
+
+    // @media (max-width: 555px) {
+    //   margin-left: 0;
+    // }
+  }
+
+  &__right-div {
+    justify-self: end;
+    margin-right: 4.8rem;
 
     display: grid;
     grid-auto-flow: column;
     align-items: center;
   }
 
-  &__cart {
-    justify-self: start;
+  &__create {
+    margin-right: 0.8rem;
+    width: 13rem;
 
     i {
-      font-size: 1.8rem;
+      font-size: 1.2rem;
+    }
+
+    // @media (max-width: 555px) {
+    //   width: 6rem;
+    // }
+  }
+
+  &__cart {
+    justify-self: start;
+    margin-right: 1.6rem;
+
+    i {
+      font-size: 1.6rem;
     }
   }
 }

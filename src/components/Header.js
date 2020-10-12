@@ -17,6 +17,7 @@ const Header = () => {
     if (isSignedIn) {
       return (
         <Link to="/products/new" className="header__create tertiary button-1of4">
+          <i className="plus square icon"></i>
           Create Product
         </Link>
       );
@@ -27,20 +28,21 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link to="/" className="header__home tertiary button-2of4">
-        Box&Cask
-      </Link>
-
-      <div className="header__div">
-        {renderCreate()}
+      <div className="header__left-div">
+        <Link to="/" className="header__home tertiary button-2of4">
+          Box&Cask
+        </Link>
         <SearchBar />
+      </div>
+      <div className="header__right-div">
+        {renderCreate()}
         <Link to="/cart" className="header__cart tertiary button-1of4">
           {/* <img src={cartIcon} alt="shopping cart" /> */}
           <i className="shopping cart icon"></i>
           {cartQuantity}
         </Link>
+        <GoogleAuth />
       </div>
-      <GoogleAuth />
     </div>
   );
 };

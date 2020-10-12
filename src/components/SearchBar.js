@@ -1,3 +1,4 @@
+import './SearchBar.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchProducts, searchProducts } from '../actions';
@@ -17,7 +18,7 @@ const SearchBar = () => {
   }, [dispatch]);
 
   return (
-    <form onSubmit={onSubmit} className="ui icon input" style={{ height: '33px' }}>
+    <form onSubmit={onSubmit} className="search-bar ui icon input">
       <input
         value={term}
         onChange={(e) => setTerm(e.target.value)}
