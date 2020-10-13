@@ -1,4 +1,3 @@
-import '../sass/style.scss';
 import './ShoppingCart.scss';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

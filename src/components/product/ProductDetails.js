@@ -1,4 +1,3 @@
-import '../../sass/style.scss';
 import '../../sass/components.scss';
 import './ProductDetails.scss';
 import React, { useEffect, useState } from 'react';
