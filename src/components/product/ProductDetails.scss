@@ -11,21 +11,52 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: min-content min-content;
+    width: 65rem;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, min-content);
+    width: 33rem;
+  }
 
   &__name {
     font-size: 1.8rem;
     font-weight: 500;
+
+    @media (max-width: 1200px) {
+      font-size: 1.6rem;
+    }
   }
 
   &__price {
     font-size: 2.4rem;
     font-weight: 700;
     margin: 1.2rem 0;
+
+    @media (max-width: 1200px) {
+      font-size: 1.8rem;
+    }
   }
 
   &__description {
     padding: 0 3.2rem 2.4rem 3.2rem;
     grid-column: 2 / span 1;
+
+    @media (max-width: 1200px) {
+      padding-top: 2.4rem;
+      grid-column: 1 / span 2;
+    }
+
+    @media (max-width: 700px) {
+      padding-top: 0;
+      grid-column: 1 / span 1;
+    }
   }
 
   &__description-header {
@@ -90,10 +121,32 @@
   &__img {
     width: 100%;
     grid-row: 1 / span 2;
+
+    @media (max-width: 1200px) {
+      height: 100%;
+      width: auto;
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+    }
+
+    @media (max-width: 700px) {
+      width: 33rem;
+      height: auto;
+    }
   }
 
   &__content {
     padding: 2.4rem 3.2rem 0 3.2rem;
+
+    @media (max-width: 1200px) {
+      grid-column: 2 / span 1;
+      padding-bottom: 2.4rem;
+    }
+
+    @media (max-width: 700px) {
+      grid-column: 1 / span 1;
+      grid-row: 2 / span 1;
+    }
   }
 
   &__actions {
