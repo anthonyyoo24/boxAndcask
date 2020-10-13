@@ -23,7 +23,6 @@ const SearchBar = () => {
         value={term}
         onChange={(e) => setTerm(e.target.value)}
         type="text"
-        placeholder="Search..."
       />
       <i onClick={onSubmit} className="search link icon"></i>
     </form>
