@@ -114,7 +114,7 @@ const ShoppingCart = ({ history }) => {
       </div>
     );
   } else if (!paymentSuccess && cart.length === 0) {
-    return <h2>Your shopping cart is empty</h2>;
+    return <p style={{ fontSize: '1.8rem' }}>Your shopping cart is empty</p>;
   } else if (paymentSuccess && cart.length === 0) {
     return null;
   }
