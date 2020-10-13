@@ -49,7 +49,6 @@ const ProductList = () => {
   return (
     <div>
       <div>
-        <h2>Products</h2>
         <div className="product-list">{renderList()}</div>
       </div>
       <div className="pagination">
