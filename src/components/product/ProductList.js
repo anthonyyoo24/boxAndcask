@@ -48,9 +48,7 @@ const ProductList = () => {
 
   return (
     <div>
-      <div>
-        <div className="product-list">{renderList()}</div>
-      </div>
+      <div className="product-list">{renderList()}</div>
       <div className="pagination">
         <Pagination
           activePage={activePage}
