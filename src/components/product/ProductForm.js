@@ -16,8 +16,8 @@ const renderInput = ({ input, label, meta, type, minlength, maxlength }) => {
         {...input}
         className="form__input"
         rows="5"
-        minlength={minlength}
-        maxlength={maxlength}
+        minLength={minlength}
+        maxLength={maxlength}
       />
     ) : (
       <input
@@ -25,8 +25,8 @@ const renderInput = ({ input, label, meta, type, minlength, maxlength }) => {
         className="form__input"
         autoComplete="off"
         type={type}
-        minlength={minlength ? minlength : ''}
-        maxlength={maxlength ? maxlength : ''}
+        minLength={minlength ? minlength : ''}
+        maxLength={maxlength ? maxlength : ''}
       />
     );
 
