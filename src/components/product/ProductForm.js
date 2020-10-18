@@ -42,8 +42,8 @@ const renderInput = ({ input, label, meta, type, minlength, maxlength }) => {
 const ProductForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit(props.onSubmit)} className="ui form error">
-      <Field name="name" component={renderInput} label="Name" minlength="1" maxlength="25" />
       <Field name="image" component={FileInput} label="Image" />
+      <Field name="name" component={renderInput} label="Name" minlength="1" maxlength="25" />
       <Field name="price" component={renderInput} label="Price" type="number" />
       <Field name="stock" component={renderInput} label="Stock Count" type="number" />
       <Field
