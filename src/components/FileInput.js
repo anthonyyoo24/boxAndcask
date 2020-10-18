@@ -7,9 +7,15 @@ const FileInput = ({ input, label }) => {
   };
 
   return (
-    <div className="field">
+    <div className="field" style={{ overflow: 'hidden' }}>
       <label className="form__label">{label}</label>
-      <input className="form__input" onChange={onChange} type="file" accept=".jpg, .png, .jpeg" required />
+      <input
+        className="form__input"
+        onChange={onChange}
+        type="file"
+        accept=".jpg, .png, .jpeg"
+        required
+      />
     </div>
   );
 };
