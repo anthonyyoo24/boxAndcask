@@ -14,8 +14,8 @@ import {
   PAYMENT_FAIL,
   SEARCH_PRODUCTS,
 } from './types';
-import products from '../apis/products';
 import history from '../history';
+import { db } from '../services/firebase';
 
 export const searchProducts = (term) => (dispatch, getState) => {
   const products = getState().products;
@@ -36,9 +36,9 @@ export const paymentSuccess = () => (dispatch, getState) => {
     if (cart[product.id]) {
       const leftOverStock = product.stock - cart[product.id].orderQuantity;
 
-      const response = await products.patch(`/products/${product.id}`, { stock: leftOverStock });
+      await db.ref(`products/${product.id}`).update({ stock: leftOverStock });
 
-      dispatch({ type: EDIT_PRODUCT, payload: response.data });
+      dispatch({ type: EDIT_PRODUCT, payload: { ...product, stock: leftOverStock } });
     }
   });
 
@@ -53,7 +53,7 @@ export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
   const cart = getState().cart;
   const totalQuantity = cart[product.id]
     ? parseInt(orderQuantity) + parseInt(cart[product.id].orderQuantity)
-    : null  ;
+    : null;
 
   if (cart[product.id] && product.stock < totalQuantity) {
     dispatch({
@@ -108,37 +108,67 @@ export const changeAuth = (isSignedIn, userId = null) => {
 
 export const createProduct = (formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await products.post('/products', { ...formValues, userId });
+  const products = Object.values(getState().products);
+  let id;
 
-  dispatch({ type: CREATE_PRODUCT, payload: response.data });
+  if (products.length > 0) {
+    id = products[products.length - 1].id + 1;
+  } else {
+    id = 1;
+  }
+
+  const newFormValues = {
+    ...formValues,
+    userId,
+    id,
+  };
+
+  await db.ref(`products/${id}`).set(newFormValues);
+
+  dispatch({ type: CREATE_PRODUCT, payload: newFormValues });
 
   history.push('/');
 };
 
 export const fetchProduct = (id) => async (dispatch) => {
-  const response = await products.get(`/products/${id}`);
-
-  dispatch({ type: FETCH_PRODUCT, payload: response.data });
+  await db
+    .ref(`products/${id}`)
+    .once('value')
+    .then((snapshot) => {
+      const product = snapshot.val();
+      dispatch({ type: FETCH_PRODUCT, payload: product });
+    });
 };
 
 export const fetchProducts = () => async (dispatch) => {
-  const response = await products.get('/products');
+  const products = [];
 
-  dispatch({ type: FETCH_PRODUCTS, payload: response.data });
+  await db
+    .ref('products')
+    .once('value')
+    .then((snapshot) => {
+      snapshot.forEach((snap) => {
+        products.push(snap.val());
+      });
+    });
+
+  dispatch({ type: FETCH_PRODUCTS, payload: products });
 };
 
 export const deleteProduct = (id) => async (dispatch) => {
-  await products.delete(`/products/${id}`);
+  await db.ref(`products/${id}`).remove();
 
   dispatch({ type: DELETE_PRODUCT, payload: id });
 
   history.push('/');
 };
 
-export const editProduct = (id, formValues) => async (dispatch) => {
-  const response = await products.patch(`/products/${id}`, formValues);
+export const editProduct = (id, formValues) => async (dispatch, getState) => {
+  const { userId } = getState().auth;
 
-  dispatch({ type: EDIT_PRODUCT, payload: response.data });
+  await db.ref(`products/${id}`).update(formValues);
+
+  dispatch({ type: EDIT_PRODUCT, payload: { ...formValues, id, userId } });
 
   history.push('/');
 };
