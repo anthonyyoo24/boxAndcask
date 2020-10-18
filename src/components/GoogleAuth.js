@@ -1,40 +1,30 @@
 import './GoogleAuth.scss';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAuth } from '../actions';
+import { auth } from '../services/firebase';
+import { signInWithGoogle, signOutWithGoogle } from '../helpers/auth';
 
 const GoogleAuth = () => {
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
-  const auth = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    window.gapi.load('client:auth2', () => {
-      window.gapi.client
-        .init({
-          clientId: '1053549322562-8susv68oa8tafnn0pq94m6n3l5cl915h.apps.googleusercontent.com',
-          scope: 'email',
-        })
-        .then(() => {
-          auth.current = window.gapi.auth2.getAuthInstance();
-
-          auth.current.isSignedIn.get()
-            ? dispatch(changeAuth(true, auth.current.currentUser.get().getId()))
-            : dispatch(changeAuth(false));
-
-          auth.current.isSignedIn.listen((isSignedIn) =>
-            dispatch(changeAuth(isSignedIn, auth.current.currentUser.get().getId()))
-          );
-        });
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(changeAuth(true, user.uid));
+      } else {
+        dispatch(changeAuth(false));
+      }
     });
   }, [dispatch]);
 
-  const trySignIn = () => {
-    auth.current.signIn();
+  const trySignIn = async () => {
+    await signInWithGoogle();
   };
 
-  const trySignOut = () => {
-    auth.current.signOut();
+  const trySignOut = async () => {
+    await signOutWithGoogle();
   };
 
   const renderAuthButton = () => {
