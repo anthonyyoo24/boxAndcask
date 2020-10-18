@@ -24,8 +24,6 @@ const Header = () => {
     }
   };
 
-  // const cartIcon = require(`../img/svg/icon-shopping-cart.svg`);
-
   return (
     <div className="header">
       <Link to="/" className="header__home tertiary button-2of4">
@@ -35,7 +33,6 @@ const Header = () => {
       <div className="header__right-div">
         {renderCreate()}
         <Link to="/cart" className="header__cart tertiary button-1of4">
-          {/* <img src={cartIcon} alt="shopping cart" /> */}
           <i className="shopping cart icon"></i>
           {cartQuantity}
         </Link>
