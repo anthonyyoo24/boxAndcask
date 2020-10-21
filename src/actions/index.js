@@ -123,9 +123,12 @@ export const createProduct = (formValues) => async (dispatch, getState) => {
     id,
   };
 
-  await db.ref(`products/${id}`).set(newFormValues);
-
-  dispatch({ type: CREATE_PRODUCT, payload: newFormValues });
+  try {
+    await db.ref(`products/${id}`).set(newFormValues);
+    dispatch({ type: CREATE_PRODUCT, payload: newFormValues });
+  } catch (err) {
+    alert('Your account does not have permission to create, edit, or delete products.');
+  }
 
   history.push('/');
 };
@@ -156,9 +159,12 @@ export const fetchProducts = () => async (dispatch) => {
 };
 
 export const deleteProduct = (id) => async (dispatch) => {
-  await db.ref(`products/${id}`).remove();
-
-  dispatch({ type: DELETE_PRODUCT, payload: id });
+  try {
+    await db.ref(`products/${id}`).remove();
+    dispatch({ type: DELETE_PRODUCT, payload: id });
+  } catch (err) {
+    alert('Your account does not have permission to create, edit, or delete products.');
+  }
 
   history.push('/');
 };
@@ -166,9 +172,12 @@ export const deleteProduct = (id) => async (dispatch) => {
 export const editProduct = (id, formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
 
-  await db.ref(`products/${id}`).update(formValues);
-
-  dispatch({ type: EDIT_PRODUCT, payload: { ...formValues, id, userId } });
+  try {
+    await db.ref(`products/${id}`).update(formValues);
+    dispatch({ type: EDIT_PRODUCT, payload: { ...formValues, id, userId } });
+  } catch (err) {
+    alert('Your account does not have permission to create, edit, or delete products.');
+  }
 
   history.push('/');
 };
