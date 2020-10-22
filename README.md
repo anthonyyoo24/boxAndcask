@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Box&Cask - ecommerce app
 
-## Available Scripts
+This is an e-commerce application built with React and Redux (using hooks entirely) that has all of the main functions that you would expect.
 
-In the project directory, you can run:
+## Demo
 
-### `npm start`
+![App Demo](img/demo/demo.gif)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+View this project at https://boxandcask-fe15d.web.app/
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Usage Notes
 
-### `npm test`
+-To use the checkout process, you must have a sandbox/test Paypal account. If you don't have one, create a Paypal account then log in to the Paypal developers console where they automatically generate sandbox/test accounts for you with a provided username and password.
+-Write access (creating, editing, and deleting products) is currently restricted from public use. If you would like access, please contact me and provide the email associated with your Google account.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+-Login
+-Create, edit, and delete product listings (for logged in users)
+-Search bar
+-Pagination
+-Shopping cart
+-Protected routes
+-Paypal checkout
+-Responsive layout/design using media queries
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+-Javascript
+-React (Hooks, React Router)
+-Redux (Thunk, Redux Form, Redux DevTools)
+-HTML
+-CSS
+-SASS (SCSS)
+-Firebase
+-Google OAuth
+-Semantic UI
+-Paypal Checkout
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contact
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+-Email: anthony_yoo_24@hotmail.com
