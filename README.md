@@ -4,7 +4,7 @@ This is an e-commerce application built with React and Redux (using hooks entire
 
 ## Demo
 
-![App Demo](img/demo/demo.gif)
+![App Demo](demo/demo.gif)
 
 View this project at https://boxandcask-fe15d.web.app/
 
