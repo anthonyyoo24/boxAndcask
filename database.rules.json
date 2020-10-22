@@ -1,6 +1,6 @@
 {
   "rules": {
     ".read": true,
-    ".write": "auth != null"
+    ".write": "auth.token.email_verified == true && auth.token.email === 'anthonyyoo24@gmail.com'"
   }
 }
