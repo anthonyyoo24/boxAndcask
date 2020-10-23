@@ -32,8 +32,7 @@ View the live demo at https://boxandcask-fe15d.web.app/
 - HTML
 - CSS
 - SASS (SCSS)
-- Firebase
-- Google OAuth
+- Firebase (Database and Google OAuth)
 - Semantic UI
 - Paypal Checkout
 
