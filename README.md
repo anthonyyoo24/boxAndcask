@@ -24,10 +24,6 @@ View the live demo at https://boxandcask-fe15d.web.app/
 - To use the checkout process, you must have a sandbox/test Paypal account. If you don't have one, create a Paypal account then log in to the Paypal developers console where they automatically generate sandbox/test accounts for you with a provided username and password.
 - Write access (creating, editing, and deleting products) is currently restricted from public use. If you would like access, please contact me and provide the email associated with your Google account.
 
-## Purpose
-
-I wanted to take a step into the e-commerce domain because I believe it is playing an important role in the transition of the global economy towards a more digital and remote configuration. Given the current lockdown measures taken in response to the coronavirus pandemic, this process should accelerate. Therefore, it seems like the online retail industry will have to carry a lot of the burden in keeping today’s economies afloat while these unfavorable conditions continue to persist. Sharing in that responsibility is something I can get behind.
-
 ## Technologies
 
 - JavaScript
