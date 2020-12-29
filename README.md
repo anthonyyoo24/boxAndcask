@@ -30,7 +30,7 @@ View the live demo at https://boxandcask-fe15d.web.app/
 - React (Hooks, React Router)
 - Redux (Thunk, Redux Form, Redux DevTools)
 - HTML
-- CSS
+- CSS (Flexbox and CSS Grid)
 - SASS (SCSS)
 - Firebase (Realtime Database and Google OAuth)
 - Semantic UI
