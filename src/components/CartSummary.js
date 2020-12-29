@@ -41,7 +41,7 @@ const CartSummary = () => {
       </div>
       <div className="divider"></div>
       <p className="cart-summary__checkout">Checkout Now</p>
-      <PayPal total={subTotal} />
+      <PayPal total={total} />
     </div>
   );
 };
