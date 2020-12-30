@@ -22,7 +22,7 @@ View the live demo at https://boxandcask-fe15d.web.app/
 ## Usage Notes
 
 - To use the checkout process, you must have a sandbox/test Paypal account. If you don't have one, create a Paypal account then log in to the Paypal developers console where they automatically generate sandbox/test accounts for you with a provided username and password.
-- Write access (creating, editing, and deleting products) is currently restricted from public use. If you would like access, please contact me and provide the email associated with your Google account.
+- Write access (creating, editing, and deleting products) is currently restricted from public use.
 
 ## Technologies
 
