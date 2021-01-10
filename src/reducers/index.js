@@ -8,7 +8,7 @@ import searchReducer from './searchReducer';
 
 export default combineReducers({
   auth: authReducer,
-  form: formReducer,
+  form: formReducer, // special key name
   products: productReducer,
   cart: cartReducer,
   payment: paymentReducer,

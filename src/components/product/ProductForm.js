@@ -74,4 +74,7 @@ const validate = (formValues) => {
   return errors;
 };
 
+// 'reduxForm' function basically same functionality as the connect function from 'react-redux'.
+// Name of the form should describe the purpose of the form. It will show up within the 'form' property
+// of the redux state object with a key of 'productForm'
 export default reduxForm({ form: 'productForm', validate })(ProductForm);

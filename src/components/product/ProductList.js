@@ -15,6 +15,10 @@ const ProductList = () => {
       ? Math.ceil(searchedProducts.length / productsPerPage)
       : Math.ceil(products.length / productsPerPage);
 
+  // When you submit a search term that returns only one page worth of products while you are on
+  // the second page of a list of products, then you will remain on an empty page. So the below
+  // useEffect hook makes sure we automatically navigate to the first page whenever we submit
+  // a search term if the active page is greater than the total number of pages.
   useEffect(() => {
     if (activePage > totalPages) setActivePage(1);
   }, [activePage, totalPages]);

@@ -18,13 +18,18 @@ const Unauthorized = ({ location, history }) => {
       dispatch(fetchProduct(productId));
     }
   }, [dispatch, from.pathname, productId, isSignedIn]);
-
+  
   if (
     isSignedIn &&
     (from.pathname.includes('edit') || from.pathname.includes('delete')) &&
     product.userId === currentUserId
   ) {
     setTimeout(() => {
+      // History.replace redirects to the specified path except it replaces the current history entry
+      // instead of pushing a new one like history.push does. We use history.replace because we
+      // want the user to be able to click the 'back' button and not navigate to the unauthorized page
+      // but to the page before it.
+
       history.replace(from);
     }, 100);
 
