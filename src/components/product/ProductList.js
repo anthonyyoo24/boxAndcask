@@ -1,8 +1,8 @@
 import './ProductList.scss';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Pagination } from 'semantic-ui-react';
+import ProductCard from './ProductCard';
 
 const ProductList = () => {
   const products = useSelector((state) => Object.values(state.products));
@@ -31,23 +31,7 @@ const ProductList = () => {
       if (list[i]) paginatedList.push(list[i]);
     }
 
-    return paginatedList.map((product) => {
-      const image = require(`../../img/${product.image}`);
-
-      return (
-        <div key={product.id} className="product-card">
-          <Link to={`/products/${product.id}`}>
-            <img src={image} alt={product.name} className="product-card__img" />
-          </Link>
-          <div className="product-card__content">
-            <Link to={`/products/${product.id}`} className="product-card__name">
-              {product.name}
-            </Link>
-            <p className="product-card__price">${product.price}</p>
-          </div>
-        </div>
-      );
-    });
+    return paginatedList.map((product) => <ProductCard product={product} />);
   };
 
   return (
