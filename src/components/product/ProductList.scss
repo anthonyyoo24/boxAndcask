@@ -1,4 +1,3 @@
-@import '../../sass/variables.scss';
 @import '../../sass/base.scss';
 
 .product-list {
@@ -7,36 +6,6 @@
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   gap: 1.6rem;
   margin-top: 2.4rem;
-}
-
-.product-card {
-  border-radius: 1.6rem;
-  overflow: hidden;
-  box-shadow: $shadow-double-1of5;
-  background-color: #ffffff;
-  transition: all 0.5s;
-
-  &:hover {
-    box-shadow: $shadow-double-3of5;
-  }
-
-  &__img {
-    max-width: 100%;
-    border-bottom: 1px solid $blue-grey-light-1of5;
-  }
-
-  &__content {
-    padding: 0.8rem;
-  }
-
-  &__name {
-    color: $blue-grey-dark-5of5;
-  }
-
-  &__price {
-    margin-top: 0.4rem;
-    font-weight: 700;
-  }
 }
 
 .pagination {
