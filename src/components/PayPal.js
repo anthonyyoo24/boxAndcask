@@ -11,7 +11,8 @@ import { paymentSuccess } from '../actions';
 // sb-43xrcu3229455@personal.example.com
 // ]V#Hd8?_
 
-const PayPalButton = window.paypal.Buttons.driver('react', { React, ReactDOM });
+const PayPalButton =
+  typeof window !== 'undefined' ? window.paypal.Buttons.driver('react', { React, ReactDOM }) : null;
 
 const PayPal = (props) => {
   const dispatch = useDispatch();

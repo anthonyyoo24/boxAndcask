@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+  if (!product) return null;
+
   const image = require(`../../img/${product.image}`);
 
   return (

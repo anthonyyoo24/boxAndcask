@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard With props matches the snapshot 1`] = `
+<div
+  className="product-card"
+  key="2"
+>
+  <Link
+    to="/products/2"
+  >
+    <img
+      alt="Josephine Sofa"
+      className="product-card__img"
+      src="josephine-sofa.jpg"
+    />
+  </Link>
+  <div
+    className="product-card__content"
+  >
+    <Link
+      className="product-card__name"
+      to="/products/2"
+    >
+      Josephine Sofa
+    </Link>
+    <p
+      className="product-card__price"
+    >
+      $
+      1200.99
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ProductCard With props updates via props 1`] = `
+<div
+  className="product-card"
+  key="2"
+>
+  <Link
+    to="/products/2"
+  >
+    <img
+      alt="Josephine Sofa"
+      className="product-card__img"
+      src="josephine-sofa.jpg"
+    />
+  </Link>
+  <div
+    className="product-card__content"
+  >
+    <Link
+      className="product-card__name"
+      to="/products/2"
+    >
+      Josephine Sofa
+    </Link>
+    <p
+      className="product-card__price"
+    >
+      $
+      1000
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ProductCard With props updates via props 2`] = `
+<div
+  className="product-card"
+  key="2"
+>
+  <Link
+    to="/products/2"
+  >
+    <img
+      alt="Josephine Sofa"
+      className="product-card__img"
+      src="josephine-sofa.jpg"
+    />
+  </Link>
+  <div
+    className="product-card__content"
+  >
+    <Link
+      className="product-card__name"
+      to="/products/2"
+    >
+      Josephine Sofa
+    </Link>
+    <p
+      className="product-card__price"
+    >
+      $
+      1100.99
+    </p>
+  </div>
+</div>
+`;
