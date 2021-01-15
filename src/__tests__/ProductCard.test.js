@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import toJSON from 'enzyme-to-json';
+import checkPropTypes from 'check-prop-types';
 import ProductCard from '../components/product/ProductCard';
 
 const fakeProduct = {
@@ -10,6 +11,19 @@ const fakeProduct = {
 };
 
 describe('ProductCard', () => {
+  describe('Checking PropTypes', () => {
+    it('should not throw a warning', () => {
+      const mockProps = {
+        key: 1,
+        product: fakeProduct,
+      };
+
+      const propsError = checkPropTypes(ProductCard.propTypes, mockProps, 'prop', ProductCard.name);
+
+      expect(propsError).toBeUndefined();
+    });
+  });
+
   describe('With props', () => {
     let productCardWrapper;
     beforeAll(() => {
