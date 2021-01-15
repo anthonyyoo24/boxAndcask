@@ -31,7 +31,7 @@ const ProductList = () => {
       if (list[i]) paginatedList.push(list[i]);
     }
 
-    return paginatedList.map((product) => <ProductCard product={product} />);
+    return paginatedList.map((product) => <ProductCard key={product.id} product={product} />);
   };
 
   return (
