@@ -177,15 +177,15 @@ export const fetchProducts = () => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch, getState) => {
   const cart = getState().cart;
 
-  if (cart[id]) {
-    localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
-  }
-
   try {
     await db.ref(`products/${id}`).remove();
     dispatch({ type: DELETE_PRODUCT, payload: id });
   } catch (err) {
     alert('Your account does not have permission to create, edit, or delete products.');
+  }
+
+  if (cart[id]) {
+    localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
   }
 
   history.push('/');
@@ -194,24 +194,25 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 export const editProduct = (id, formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const cart = getState().cart;
-
-  if (cart[id]) {
-    const orderQuantity = cart[id].orderQuantity;
-
-    localStorage.setItem(
-      'cart',
-      JSON.stringify({
-        ...cart,
-        [id]: { ...formValues, id, userId, orderQuantity },
-      })
-    );
-  }
+  const product = { ...formValues, id, userId };
 
   try {
     await db.ref(`products/${id}`).update(formValues);
-    dispatch({ type: EDIT_PRODUCT, payload: { ...formValues, id, userId } });
+    dispatch({ type: EDIT_PRODUCT, payload: product });
   } catch (err) {
     alert('Your account does not have permission to create, edit, or delete products.');
+  }
+
+  if (cart[id]) {
+    const orderQuantity =
+      formValues.stock < cart[id].orderQuantity ? formValues.stock : cart[id].orderQuantity;
+
+    addCartLocalStorage(cart, product, orderQuantity);
+
+    dispatch({
+      type: CHANGE_QUANTITY,
+      payload: { ...product, orderQuantity },
+    });
   }
 
   history.push('/');
