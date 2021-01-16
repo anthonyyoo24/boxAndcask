@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -49,6 +50,13 @@ export const paymentFail = () => {
   return { type: PAYMENT_FAIL };
 };
 
+const addCartLocalStorage = (cart, product, orderQuantity) => {
+  localStorage.setItem(
+    'cart',
+    JSON.stringify({ ...cart, [product.id]: { ...product, orderQuantity } })
+  );
+};
+
 export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
   const cart = getState().cart;
   const totalQuantity = cart[product.id]
@@ -56,16 +64,22 @@ export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
     : null;
 
   if (cart[product.id] && product.stock < totalQuantity) {
+    addCartLocalStorage(cart, product, product.stock);
+
     dispatch({
       type: ADD_TO_CART,
       payload: { ...product, orderQuantity: product.stock },
     });
   } else if (cart[product.id] && product.stock > totalQuantity) {
+    addCartLocalStorage(cart, product, totalQuantity);
+
     dispatch({
       type: ADD_TO_CART,
       payload: { ...product, orderQuantity: totalQuantity },
     });
   } else {
+    addCartLocalStorage(cart, product, orderQuantity);
+
     dispatch({
       type: ADD_TO_CART,
       payload: { ...product, orderQuantity },
@@ -73,21 +87,29 @@ export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
   }
 };
 
-export const removeFromCart = (id) => {
-  return {
+export const removeFromCart = (id) => async (dispatch, getState) => {
+  const cart = getState().cart;
+  localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
+
+  dispatch({
     type: REMOVE_FROM_CART,
     payload: id,
-  };
+  });
 };
 
-export const changeQuantity = (product, orderQuantity) => {
-  return {
+export const changeQuantity = (product, orderQuantity) => async (dispatch, getState) => {
+  const cart = getState().cart;
+  addCartLocalStorage(cart, product, orderQuantity);
+
+  dispatch({
     type: CHANGE_QUANTITY,
     payload: { ...product, orderQuantity },
-  };
+  });
 };
 
 export const emptyCart = () => {
+  localStorage.setItem('cart', JSON.stringify({}));
+
   return {
     type: EMPTY_CART,
   };
@@ -158,7 +180,13 @@ export const fetchProducts = () => async (dispatch) => {
   dispatch({ type: FETCH_PRODUCTS, payload: products });
 };
 
-export const deleteProduct = (id) => async (dispatch) => {
+export const deleteProduct = (id) => async (dispatch, getState) => {
+  const cart = getState().cart;
+
+  if (cart[id]) {
+    localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
+  }
+
   try {
     await db.ref(`products/${id}`).remove();
     dispatch({ type: DELETE_PRODUCT, payload: id });
@@ -171,6 +199,19 @@ export const deleteProduct = (id) => async (dispatch) => {
 
 export const editProduct = (id, formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
+  const cart = getState().cart;
+
+  if (cart[id]) {
+    const orderQuantity = cart[id].orderQuantity;
+
+    localStorage.setItem(
+      'cart',
+      JSON.stringify({
+        ...cart,
+        [id]: { ...formValues, id, userId, orderQuantity },
+      })
+    );
+  }
 
   try {
     await db.ref(`products/${id}`).update(formValues);
