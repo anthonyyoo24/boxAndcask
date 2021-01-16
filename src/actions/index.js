@@ -17,6 +17,7 @@ import {
 } from './types';
 import history from '../history';
 import { db } from '../services/firebase';
+import { addCartLocalStorage } from '../helpers/utilities';
 
 export const searchProducts = (term) => (dispatch, getState) => {
   const products = getState().products;
@@ -48,13 +49,6 @@ export const paymentSuccess = () => (dispatch, getState) => {
 
 export const paymentFail = () => {
   return { type: PAYMENT_FAIL };
-};
-
-const addCartLocalStorage = (cart, product, orderQuantity) => {
-  localStorage.setItem(
-    'cart',
-    JSON.stringify({ ...cart, [product.id]: { ...product, orderQuantity } })
-  );
 };
 
 export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
