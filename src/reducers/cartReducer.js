@@ -13,29 +13,15 @@ const INITIAL_STATE = JSON.parse(localStorage.getItem('cart')) || {};
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      localStorage.setItem(
-        'cart',
-        JSON.stringify({ ...state, [action.payload.id]: action.payload })
-      );
-
       return { ...state, [action.payload.id]: action.payload };
     }
     case REMOVE_FROM_CART: {
-      localStorage.setItem('cart', JSON.stringify(_.omit(state, action.payload)));
-
       return _.omit(state, action.payload);
     }
     case EMPTY_CART: {
-      localStorage.setItem('cart', JSON.stringify({}));
-
       return {};
     }
     case CHANGE_QUANTITY: {
-      localStorage.setItem(
-        'cart',
-        JSON.stringify({ ...state, [action.payload.id]: action.payload })
-      );
-
       return { ...state, [action.payload.id]: action.payload };
     }
     case EDIT_PRODUCT: {
@@ -43,22 +29,12 @@ export default (state = INITIAL_STATE, action) => {
 
       const orderQuantity = state[action.payload.id].orderQuantity;
 
-      localStorage.setItem(
-        'cart',
-        JSON.stringify({
-          ...state,
-          [action.payload.id]: { ...action.payload, orderQuantity },
-        })
-      );
-
       return {
         ...state,
         [action.payload.id]: { ...action.payload, orderQuantity },
       };
     }
     case DELETE_PRODUCT: {
-      localStorage.setItem('cart', JSON.stringify(_.omit(state, action.payload)));
-
       return _.omit(state, action.payload);
     }
     default:
