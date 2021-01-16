@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -16,6 +17,7 @@ import {
 } from './types';
 import history from '../history';
 import { db } from '../services/firebase';
+import { addCartLocalStorage } from '../helpers/utilities';
 
 export const searchProducts = (term) => (dispatch, getState) => {
   const products = getState().products;
@@ -56,16 +58,22 @@ export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
     : null;
 
   if (cart[product.id] && product.stock < totalQuantity) {
+    addCartLocalStorage(cart, product, product.stock);
+
     dispatch({
       type: ADD_TO_CART,
       payload: { ...product, orderQuantity: product.stock },
     });
   } else if (cart[product.id] && product.stock > totalQuantity) {
+    addCartLocalStorage(cart, product, totalQuantity);
+
     dispatch({
       type: ADD_TO_CART,
       payload: { ...product, orderQuantity: totalQuantity },
     });
   } else {
+    addCartLocalStorage(cart, product, orderQuantity);
+
     dispatch({
       type: ADD_TO_CART,
       payload: { ...product, orderQuantity },
@@ -73,21 +81,29 @@ export const addToCart = (product, orderQuantity) => (dispatch, getState) => {
   }
 };
 
-export const removeFromCart = (id) => {
-  return {
+export const removeFromCart = (id) => async (dispatch, getState) => {
+  const cart = getState().cart;
+  localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
+
+  dispatch({
     type: REMOVE_FROM_CART,
     payload: id,
-  };
+  });
 };
 
-export const changeQuantity = (product, orderQuantity) => {
-  return {
+export const changeQuantity = (product, orderQuantity) => async (dispatch, getState) => {
+  const cart = getState().cart;
+  addCartLocalStorage(cart, product, orderQuantity);
+
+  dispatch({
     type: CHANGE_QUANTITY,
     payload: { ...product, orderQuantity },
-  };
+  });
 };
 
 export const emptyCart = () => {
+  localStorage.setItem('cart', JSON.stringify({}));
+
   return {
     type: EMPTY_CART,
   };
@@ -158,7 +174,9 @@ export const fetchProducts = () => async (dispatch) => {
   dispatch({ type: FETCH_PRODUCTS, payload: products });
 };
 
-export const deleteProduct = (id) => async (dispatch) => {
+export const deleteProduct = (id) => async (dispatch, getState) => {
+  const cart = getState().cart;
+
   try {
     await db.ref(`products/${id}`).remove();
     dispatch({ type: DELETE_PRODUCT, payload: id });
@@ -166,17 +184,35 @@ export const deleteProduct = (id) => async (dispatch) => {
     alert('Your account does not have permission to create, edit, or delete products.');
   }
 
+  if (cart[id]) {
+    localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
+  }
+
   history.push('/');
 };
 
 export const editProduct = (id, formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
+  const cart = getState().cart;
+  const product = { ...formValues, id, userId };
 
   try {
     await db.ref(`products/${id}`).update(formValues);
-    dispatch({ type: EDIT_PRODUCT, payload: { ...formValues, id, userId } });
+    dispatch({ type: EDIT_PRODUCT, payload: product });
   } catch (err) {
     alert('Your account does not have permission to create, edit, or delete products.');
+  }
+
+  if (cart[id]) {
+    const orderQuantity =
+      formValues.stock < cart[id].orderQuantity ? formValues.stock : cart[id].orderQuantity;
+
+    addCartLocalStorage(cart, product, orderQuantity);
+
+    dispatch({
+      type: CHANGE_QUANTITY,
+      payload: { ...product, orderQuantity },
+    });
   }
 
   history.push('/');
