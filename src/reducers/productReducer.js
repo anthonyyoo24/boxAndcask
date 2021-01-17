@@ -20,6 +20,9 @@ const productReducer = (state = {}, action) => {
     case FETCH_PRODUCTS:
       return { ...state, ..._.mapKeys(action.payload, 'id') };
     case EDIT_PRODUCT:
+      if (!action.payload || Object.keys(state).length === 0) return state;
+      if (action.payload && !state[action.payload.id]) return state;
+
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_PRODUCT:
       return _.omit(state, action.payload);
