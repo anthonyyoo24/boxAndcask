@@ -29,7 +29,7 @@ ProductCard.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     image: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }),
 };
 
