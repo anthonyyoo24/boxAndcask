@@ -198,21 +198,22 @@ export const editProduct = (id, formValues) => async (dispatch, getState) => {
 
   try {
     await db.ref(`products/${id}`).update(formValues);
-    dispatch({ type: EDIT_PRODUCT, payload: product });
+
+    if (cart[id]) {
+      const orderQuantity =
+        formValues.stock < cart[id].orderQuantity ? formValues.stock : cart[id].orderQuantity;
+
+      addCartLocalStorage(cart, product, orderQuantity);
+
+      dispatch({
+        type: EDIT_PRODUCT,
+        payload: { ...product, orderQuantity },
+      });
+    } else {
+      dispatch({ type: EDIT_PRODUCT, payload: product });
+    }
   } catch (err) {
     alert('Your account does not have permission to create, edit, or delete products.');
-  }
-
-  if (cart[id]) {
-    const orderQuantity =
-      formValues.stock < cart[id].orderQuantity ? formValues.stock : cart[id].orderQuantity;
-
-    addCartLocalStorage(cart, product, orderQuantity);
-
-    dispatch({
-      type: CHANGE_QUANTITY,
-      payload: { ...product, orderQuantity },
-    });
   }
 
   history.push('/');
