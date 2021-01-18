@@ -10,7 +10,7 @@ import {
 
 const INITIAL_STATE = JSON.parse(localStorage.getItem('cart')) || {};
 
-export default (state = INITIAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       return { ...state, [action.payload.id]: action.payload };
@@ -27,11 +27,9 @@ export default (state = INITIAL_STATE, action) => {
     case EDIT_PRODUCT: {
       if (!state[action.payload.id]) return state;
 
-      const orderQuantity = state[action.payload.id].orderQuantity;
-
       return {
         ...state,
-        [action.payload.id]: { ...action.payload, orderQuantity },
+        [action.payload.id]: action.payload,
       };
     }
     case DELETE_PRODUCT: {
@@ -41,3 +39,5 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+export default cartReducer;
