@@ -27,62 +27,13 @@ describe('Product Reducer', () => {
     });
   });
 
-  describe('When the action object has type EDIT_PRODUCT', () => {
-    const editedProduct = {
-      id: 1,
-      name: 'Cavette Sofa',
-      price: 2000.99,
-      stock: 9,
-    };
+    it('returns the new state that includes the newly edited product when receiving type EDIT_PRODUCT', () => {
+      const prevState = { 1: { id: 1, name: 'Josephine Sofa', price: 1200.99, stock: 7 } };
 
-    describe('When the previous state is empty', () => {
-      it('returns the previous state', () => {
-        expect(newState(productReducer, {}, EDIT_PRODUCT, editedProduct)).toEqual({});
-      });
-      it('returns the previous state when there is no action payload', () => {
-        expect(newState(productReducer, {}, EDIT_PRODUCT)).toEqual({});
+      expect(newState(productReducer, prevState, EDIT_PRODUCT, product)).toEqual({
+        [product.id]: product,
       });
     });
-
-    describe('When the previous state has one product', () => {
-      it('returns the previous state when you try to edit a product that is not in the previous state', () => {
-        const prevState = { 2: { id: 2, name: 'Josephine Sofa', price: 1200.99, stock: 7 } };
-
-        expect(newState(productReducer, prevState, EDIT_PRODUCT, editedProduct)).toEqual(prevState);
-      });
-
-      it('returns new state that includes the newly edited product', () => {
-        const prevState = { 1: { id: 1, name: 'Josephine Sofa', price: 1200.99, stock: 7 } };
-
-        expect(newState(productReducer, prevState, EDIT_PRODUCT, editedProduct)).toEqual({
-          [editedProduct.id]: editedProduct,
-        });
-      });
-    });
-
-    describe('When the previous state has two products', () => {
-      it('returns the previous state when you try to edit a product that is not in the previous state', () => {
-        const prevState = {
-          2: { id: 2, name: 'Josephine Sofa', price: 1200.99, stock: 7 },
-          3: { id: 3, name: 'Magritte Sofa', price: 2500.99, stock: 20 },
-        };
-
-        expect(newState(productReducer, prevState, EDIT_PRODUCT, editedProduct)).toEqual(prevState);
-      });
-
-      it('returns new state that includes the newly edited product', () => {
-        const prevState = {
-          1: { id: 1, name: 'Josephine Sofa', price: 1200.99, stock: 7 },
-          2: { id: 2, name: 'Magritte Sofa', price: 2500.99, stock: 20 },
-        };
-
-        expect(newState(productReducer, prevState, EDIT_PRODUCT, editedProduct)).toEqual({
-          ...prevState,
-          [editedProduct.id]: editedProduct,
-        });
-      });
-    });
-  });
 
   describe('When the action object has type DELETE_PRODUCT', () => {
     const testInvalidCases = (prevState = {}) => {
