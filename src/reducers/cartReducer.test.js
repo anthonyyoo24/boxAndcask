@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import cartReducer from './cartReducer';
 import {
   ADD_TO_CART,
