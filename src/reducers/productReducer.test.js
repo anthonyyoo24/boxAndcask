@@ -9,40 +9,21 @@ import {
 } from '../actions/types';
 import { newState } from '../helpers/utilities';
 
+const product = {
+  id: 1,
+  name: 'Magritte Sofa',
+  price: 1599.99,
+  stock: 10,
+};
+
 describe('Product Reducer', () => {
   it('returns the default state when the reducer initializes', () => {
     expect(newState(productReducer, undefined)).toEqual({});
   });
 
-  describe('When the action object has type CREATE_PRODUCT', () => {
-    const createProductTest = (product, prevState = {}) => {
-      it('returns the previous state when there is no action payload', () => {
-        expect(newState(productReducer, prevState, CREATE_PRODUCT)).toEqual(prevState);
-      });
-
-      it('returns a new state with the newly created product included', () => {
-        expect(newState(productReducer, prevState, CREATE_PRODUCT, product)).toEqual({
-          ...prevState,
-          [product.id]: product,
-        });
-      });
-    };
-
-    const product = {
-      id: 1,
-      name: 'Magritte Sofa',
-      price: 1599.99,
-      stock: 10,
-    };
-
-    describe('When the previous state is empty', () => {
-      createProductTest(product);
-    });
-
-    describe('When the previous state has one product', () => {
-      const prevState = { 2: { id: 2, name: 'Cavette Sofa', price: 1200.99, stock: 7 } };
-
-      createProductTest(product, prevState);
+  it('returns the new state with the newly created product included when receiving type CREATE_PRODUCT', () => {
+    expect(newState(productReducer, {}, CREATE_PRODUCT, product)).toEqual({
+      [product.id]: product,
     });
   });
 
@@ -143,7 +124,7 @@ describe('Product Reducer', () => {
     });
   });
 
-  describe('When the action object has type FETCHED_PRODUCT', () => {
+  describe('When the action object has type FETCH_PRODUCT', () => {
     const fetchProductTest = (prevState = {}) => {
       it('returns just the previous state when the fetched product does not exist', () => {
         expect(newState(productReducer, prevState, FETCH_PRODUCT)).toEqual(prevState);
@@ -179,7 +160,7 @@ describe('Product Reducer', () => {
     });
   });
 
-  describe('When the action object has type FETCHED_PRODUCTS', () => {
+  describe('When the action object has type FETCH_PRODUCTS', () => {
     const fetchProductsTest = (prevState = {}) => {
       it('returns just the previous state when the product list to fetch is empty', () => {
         expect(newState(productReducer, prevState, FETCH_PRODUCTS, [])).toEqual(prevState);
