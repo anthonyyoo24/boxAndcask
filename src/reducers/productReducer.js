@@ -10,8 +10,6 @@ import {
 const productReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_PRODUCT:
-      if (!action.payload) return state;
-
       return { ...state, [action.payload.id]: action.payload };
     case FETCH_PRODUCT:
       if (!action.payload) return state;
