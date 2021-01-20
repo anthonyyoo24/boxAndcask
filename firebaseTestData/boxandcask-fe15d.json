@@ -1,0 +1,31 @@
+{
+    "products": {
+        "1": {
+            "id": 1,
+            "image": "magritte-sofa.jpg",
+            "name": "Magritte Sofa",
+            "price": 970.99,
+            "stock": 9,
+            "userId": "alHpxqwJ99NDG8f4ari2DD6nWtF3",
+            "description": "Great Sofa"
+        },
+        "2": {
+            "id": 2,
+            "image": "josephine-sofa.jpg",
+            "name": "Josephine Sofa",
+            "price": 800.99,
+            "stock": 12,
+            "userId": "alHpxqwJ99NDG8f4ari2DD6nWtF3",
+            "description": "Great Sofa"
+        },
+        "3": {
+            "id": 3,
+            "image": "monahan-sofa.jpg",
+            "name": "Monahan Sofa",
+            "price": 1100.99,
+            "stock": 7,
+            "userId": "alHpxqwJ99NDG8f4ari2DD6nWtF3",
+            "description": "Great Sofa"
+        }
+    }
+}
