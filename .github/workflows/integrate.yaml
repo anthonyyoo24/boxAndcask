@@ -2,17 +2,17 @@ name: Continous Integration
 
 on: [push, pull_request]
 
-jobs: 
-  testing: 
-  strategy: 
-    matrix: 
-      platform: [ubuntu-latest, macos-latest, windows-latest]
+jobs:
+  testing:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
-    steps: 
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: npm install -g firebase-tools
       - run: npm ci
-      - run: firebase emulators:exec 'npm test' --import=./firebaseTestData
+      - run: firebase emulators:exec --project boxandcask-fe15d 'npm test' --import=./firebaseTestData
