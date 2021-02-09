@@ -11,7 +11,7 @@ exports[`ProductCard With props matches the snapshot 1`] = `
     <img
       alt="Josephine Sofa"
       className="product-card__img"
-      src="josephine-sofa.jpg"
+      src="img/josephine-sofa.jpg"
     />
   </Link>
   <div
@@ -44,7 +44,7 @@ exports[`ProductCard With props updates via props 1`] = `
     <img
       alt="Josephine Sofa"
       className="product-card__img"
-      src="josephine-sofa.jpg"
+      src="img/josephine-sofa.jpg"
     />
   </Link>
   <div
@@ -77,7 +77,7 @@ exports[`ProductCard With props updates via props 2`] = `
     <img
       alt="Josephine Sofa"
       className="product-card__img"
-      src="josephine-sofa.jpg"
+      src="img/josephine-sofa.jpg"
     />
   </Link>
   <div
