@@ -48,14 +48,12 @@ const ShoppingCart = ({ history }) => {
 
   const renderList = () => {
     return cart.map((product) => {
-      const image = require(`../img/${product.image}`);
-
       return (
         <div key={product.id} className="cart-item">
           <img
             onClick={() => history.push(`/products/${product.id}`)}
             className="cart-item__img"
-            src={image}
+            src={`img/${product.image}`}
             alt={product.name}
           />
           <Link to={`/products/${product.id}`} className="cart-item__name">

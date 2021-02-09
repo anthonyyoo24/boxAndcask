@@ -6,12 +6,10 @@ import PropTypes from 'prop-types';
 const ProductCard = ({ product }) => {
   if (!product) return null;
 
-  const image = require(`../../img/${product.image}`);
-
   return (
     <div key={product.id} className="product-card">
       <Link to={`/products/${product.id}`}>
-        <img src={image} alt={product.name} className="product-card__img" />
+        <img src={`img/${product.image}`} alt={product.name} className="product-card__img" />
       </Link>
       <div className="product-card__content">
         <Link to={`/products/${product.id}`} className="product-card__name">
