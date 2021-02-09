@@ -80,6 +80,10 @@
     height: 9.6rem;
     padding: 1.2rem;
     cursor: pointer;
+
+    @media (max-width: 450px) {
+      height: 6.4rem;
+    }
   }
 
   &__name {
