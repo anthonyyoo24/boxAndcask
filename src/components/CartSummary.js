@@ -15,8 +15,10 @@ const CartSummary = () => {
     }, 0)
     .toFixed(2);
 
-  const taxes = subTotal * 0.13;
-  const total = parseFloat(subTotal) + parseFloat(taxes);
+  const taxes = (subTotal * 0.13).toFixed(2);
+  const total = (parseFloat(subTotal) + parseFloat(taxes)).toFixed(2);
+
+  console.log(total);
 
   return (
     <div className="cart-summary">
@@ -33,10 +35,10 @@ const CartSummary = () => {
         <div className="cart-summary__costs-numbers">
           <span>${subTotal}</span>
           <br />
-          <span>${taxes.toFixed(2)}</span>
+          <span>${taxes}</span>
           <br />
           <div className="divider"></div>
-          <span>${total.toFixed(2)}</span>
+          <span>${total}</span>
         </div>
       </div>
       <div className="divider"></div>
