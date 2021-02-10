@@ -18,8 +18,6 @@ const CartSummary = () => {
   const taxes = (subTotal * 0.13).toFixed(2);
   const total = (parseFloat(subTotal) + parseFloat(taxes)).toFixed(2);
 
-  console.log(total);
-
   return (
     <div className="cart-summary">
       <p className="cart-summary__title">Cart Summary</p>
