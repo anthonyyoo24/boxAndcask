@@ -45,7 +45,7 @@ describe('ProductCard', () => {
       const img = productCardWrapper.find('img');
 
       expect(img).toHaveLength(1);
-      expect(img.props().src).toBe(fakeProduct.image);
+      expect(img.props().src).toBe(`img/${fakeProduct.image}`);
       expect(img.props().alt).toBe(fakeProduct.name);
       expect(img.props().className).toBe('product-card__img');
     });

@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-const firebaseConfig = {
+let firebaseConfig = {
   apiKey: 'AIzaSyBVsB2VaylOvoFIITJCG8CJQ1kfzGnQDHs',
   authDomain: 'boxandcask-fe15d.firebaseapp.com',
   databaseURL: 'https://boxandcask-fe15d.firebaseio.com',
@@ -11,6 +11,10 @@ const firebaseConfig = {
   messagingSenderId: '579911587558',
   appId: '1:579911587558:web:fb0b1b8aba6c60302f4d27',
 };
+
+if (window.location.hostname === 'localhost') {
+  firebaseConfig.databaseURL = 'http://localhost:9000/?ns=boxandcask-fe15d';
+}
 
 firebase.initializeApp(firebaseConfig);
 

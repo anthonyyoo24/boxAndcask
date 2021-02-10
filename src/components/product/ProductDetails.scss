@@ -25,6 +25,22 @@
     width: 33rem;
   }
 
+  &__img {
+    width: 100%;
+    grid-row: 1 / span 2;
+
+    @media (max-width: 1200px) {
+      width: 100%;
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+    }
+
+    @media (max-width: 700px) {
+      width: 33rem;
+      height: auto;
+    }
+  }
+
   &__name {
     font-size: 1.8rem;
     font-weight: 500;
@@ -118,22 +134,7 @@
     }
   }
 
-  &__img {
-    width: 100%;
-    grid-row: 1 / span 2;
-
-    @media (max-width: 1200px) {
-      height: 100%;
-      width: auto;
-      grid-row: 1 / span 1;
-      grid-column: 1 / span 1;
-    }
-
-    @media (max-width: 700px) {
-      width: 33rem;
-      height: auto;
-    }
-  }
+  
 
   &__content {
     padding: 2.4rem 3.2rem 0 3.2rem;
