@@ -27,9 +27,15 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case EDIT_PRODUCT: {
       if (!state[action.payload.id]) return state;
 
+      // Have to specify the orderQuantity because EDIT_PRODUCT's payload property does not include an
+      // orderQuantity property. Otherwise, the number showed in the cart icon in the header will show
+      // 'NaN' when a payment is successful.
       return {
         ...state,
-        [action.payload.id]: {...action.payload, orderQuantity: state[action.payload.id].orderQuantity},
+        [action.payload.id]: {
+          ...action.payload,
+          orderQuantity: state[action.payload.id].orderQuantity,
+        },
       };
     }
     case DELETE_PRODUCT: {
