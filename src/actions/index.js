@@ -181,13 +181,13 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     await db.ref(`products/${id}`).remove();
     dispatch({ type: DELETE_PRODUCT, payload: id });
 
+    if (cart[id]) {
+      localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
+    }
+
     history.push('/');
   } catch (err) {
     alert('Your account does not have permission to delete products.');
-  }
-
-  if (cart[id]) {
-    localStorage.setItem('cart', JSON.stringify(_.omit(cart, id)));
   }
 };
 
