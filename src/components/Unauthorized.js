@@ -18,10 +18,11 @@ const Unauthorized = ({ location, history }) => {
       dispatch(fetchProduct(productId));
     }
   }, [dispatch, from.pathname, productId, isSignedIn]);
-  
+
   if (
     isSignedIn &&
     (from.pathname.includes('edit') || from.pathname.includes('delete')) &&
+    product &&
     product.userId === currentUserId
   ) {
     setTimeout(() => {
